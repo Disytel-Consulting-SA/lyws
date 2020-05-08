@@ -60,7 +60,7 @@ public class InventoryDocumentHandler extends GeneralHandler {
 				throw new ModelException("Error al completar el inventario:" + Msg.parseTranslation(getCtx(), anInventory.getProcessMsg()));
 									
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -120,6 +120,9 @@ public class InventoryDocumentHandler extends GeneralHandler {
 			if (!DocumentEngine.processAndSave(anInventory, DocAction.ACTION_Complete, false))
 				throw new ModelException("Error al completar el inventario:" + Msg.parseTranslation(getCtx(), anInventory.getProcessMsg()));
 			
+			/* === Commitear transaccion === */ 
+			commitTransaction();
+			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
 			return new ResultBean(false, null, result);
@@ -170,6 +173,9 @@ public class InventoryDocumentHandler extends GeneralHandler {
 			MInventory anInventory = (MInventory)getPO("M_Inventory", inventoryID, columnName, value, true, false, true, true);
 			if (!anInventory.delete(false))
 				throw new ModelException("Error al intentar eliminar el inventario " + anInventory.getM_Inventory_ID() + ": " + CLogger.retrieveErrorAsString());
+			
+			/* === Commitear transaccion === */ 
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			return new ResultBean(false, null, null);
@@ -226,7 +232,7 @@ public class InventoryDocumentHandler extends GeneralHandler {
 			}
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();

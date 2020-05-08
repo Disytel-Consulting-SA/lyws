@@ -784,7 +784,7 @@ public abstract class GeneralHandler {
 	 */
 	protected ResultBean processException(Exception e, ResultBean result, String wsParameters) {
 		/* Rollback transaccion */ 
-		Trx.getTrx(getTrxName()).rollback();
+		rollbackTransaction();
 		
 		/* Armar mensaje de error */
 		StringBuffer errValue = new StringBuffer("");
@@ -811,10 +811,13 @@ public abstract class GeneralHandler {
 	}
 	
 	/**
-	 * Cierra la transaccion actual
+	 * Cierra la transaccion actual sin forzar commit de la actividad realizada bajo la Trx.
+	 * No fuerza el commit dado que podriamos estar llegando a este punto debido a un Error (x ej. LinkageError), los cuales no deben ser catcheados.
+	 * Al no ser catcheados, la trx no es rollbackeada y por consiguiente podria ocurrir que se realice incorrectamente el commit parcial de una operación.
+	 * Es por esto que toda operacion en LYWS debe finalizar con el commitTransaction() antes de retornar los datos.
 	 */
 	protected void closeTransaction() {
-		Trx.getTrx(getTrxName()).close();
+		Trx.getTrx(getTrxName()).close(false);
 	}
 
 	/**
@@ -824,6 +827,13 @@ public abstract class GeneralHandler {
 		Trx.getTrx(getTrxName()).commit();
 	}
 
+	/**
+	 * Rollbck de la transaccion actual
+	 */
+	protected void rollbackTransaction() { 
+		Trx.getTrx(getTrxName()).rollback();
+	}
+	
 	/**
 	 * Escribe data al archivo de log del ws
 	 * @param data informacion a incorporar

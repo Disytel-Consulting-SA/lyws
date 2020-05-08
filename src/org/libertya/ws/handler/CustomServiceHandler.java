@@ -36,6 +36,9 @@ public class CustomServiceHandler extends GeneralHandler {
 			arguments.setContent(content);
 			DynamicResult result = (DynamicResult)method.invoke(instance, arguments, Env.getCtx(), getTrxName());
 			
+			/* === Commitear transaccion === */ 
+			commitTransaction();
+			
 			// instanciar el objeto a fin de iniciar el procesamiento 
 			CustomServiceResultBean response = new CustomServiceResultBean();
 			

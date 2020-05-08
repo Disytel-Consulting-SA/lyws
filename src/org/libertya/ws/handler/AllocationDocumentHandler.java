@@ -142,7 +142,7 @@ public class AllocationDocumentHandler extends GeneralHandler {
 			}
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -202,7 +202,7 @@ public class AllocationDocumentHandler extends GeneralHandler {
 			}
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();

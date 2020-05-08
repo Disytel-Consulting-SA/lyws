@@ -23,7 +23,6 @@ import org.openXpertya.util.CLogger;
 import org.openXpertya.util.DB;
 import org.openXpertya.util.Env;
 import org.openXpertya.util.Msg;
-import org.openXpertya.util.Trx;
 
 public class InvoiceDocumentHandler extends DocumentHandler {
 
@@ -70,6 +69,7 @@ public class InvoiceDocumentHandler extends DocumentHandler {
 			setBPartnerAddressInDocument(anInvoice, bPartnerID);
 			if (!anInvoice.save())
 				throw new ModelException("Error al persistir factura:" + CLogger.retrieveErrorAsString());
+			
 			// Instanciar y persistir las Lineas de factura
 			for (HashMap<String, String> line : data.getDocumentLines())
 			{
@@ -142,7 +142,7 @@ public class InvoiceDocumentHandler extends DocumentHandler {
 			anInvoice =  new MInvoice( getCtx(), anInvoice.getC_Invoice_ID(), getTrxName());
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -158,7 +158,7 @@ public class InvoiceDocumentHandler extends DocumentHandler {
 		}
 		catch (ModelException me) {
 			return processException(me, wsInvocationArguments(data));
-		}
+		}		
 		catch (Exception e) {
 			return processException(e, wsInvocationArguments(data));
 		}
@@ -313,7 +313,7 @@ public class InvoiceDocumentHandler extends DocumentHandler {
 			anInvoice =  new MInvoice( getCtx(), anInvoice.getC_Invoice_ID(), getTrxName());
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -371,6 +371,9 @@ public class InvoiceDocumentHandler extends DocumentHandler {
 			if (!anInvoice.delete(false))
 				throw new ModelException("Error al intentar eliminar la factura " + anInvoice.getC_Invoice_ID() + ": " + CLogger.retrieveErrorAsString());
 			
+			/* === Commitear transaccion === */ 
+			commitTransaction();
+			
 			/* === Retornar valor === */
 			return new ResultBean(false, null, null);
 		}
@@ -425,7 +428,10 @@ public class InvoiceDocumentHandler extends DocumentHandler {
 			// Completar el documento			
 			if (!DocumentEngine.processAndSave(anInvoice, DocAction.ACTION_Complete, false))
 				throw new ModelException("Error al completar la factura:" + Msg.parseTranslation(getCtx(), anInvoice.getProcessMsg()));
-						
+					
+			/* === Commitear transaccion === */ 
+			commitTransaction();
+			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
 			result.put("C_Invoice_ID", Integer.toString(anInvoice.getC_Invoice_ID()));
@@ -501,7 +507,7 @@ public class InvoiceDocumentHandler extends DocumentHandler {
 			}
 						
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valores === */
 			return new ResultBean(false, null, result);
@@ -556,7 +562,7 @@ public class InvoiceDocumentHandler extends DocumentHandler {
 				throw new ModelException("Error al actualizar la factura:" + CLogger.retrieveErrorAsString());
 
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();

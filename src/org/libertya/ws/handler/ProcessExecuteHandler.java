@@ -79,7 +79,7 @@ public class ProcessExecuteHandler extends GeneralHandler {
 				throw new Exception("Error en ejecución: " + pi.getSummary());
 
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			return new ResultBean(false, null, new HashMap<String, String>());
@@ -117,7 +117,7 @@ public class ProcessExecuteHandler extends GeneralHandler {
 				throw new Exception ("Error en ejecución: " + fca.getErrorMsg() + ". " + fca.getErrorDesc());
 
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			return new ResultBean(false, null, new HashMap<String, String>());
@@ -165,7 +165,7 @@ public class ProcessExecuteHandler extends GeneralHandler {
 				throw new Exception("Error en ejecución: " + pi.getSummary());
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -257,7 +257,7 @@ public class ProcessExecuteHandler extends GeneralHandler {
 				throw new Exception("Error en ejecución: " + pi.getSummary());
 
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
