@@ -35,7 +35,7 @@ public class BillOfMaterialCRUDHandler extends GeneralHandler {
 				throw new ModelException("Error al persistir el LDM:" + CLogger.retrieveErrorAsString());
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -71,7 +71,7 @@ public class BillOfMaterialCRUDHandler extends GeneralHandler {
 				throw new ModelException("Error al eliminar el LDM:" + CLogger.retrieveErrorAsString());
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();

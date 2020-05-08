@@ -57,7 +57,7 @@ public class DepositSlipDocumentHandler extends GeneralHandler {
 				throw new ModelException("Error al completar la boleta de deposito:" + Msg.parseTranslation(getCtx(), aBoletaDeposito.getProcessMsg()));
 
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -93,7 +93,7 @@ public class DepositSlipDocumentHandler extends GeneralHandler {
 				throw new ModelException("Error al eliminar la boleta de deposito:" + CLogger.retrieveErrorAsString());
 
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			return new ResultBean(false, null, null);
@@ -126,7 +126,7 @@ public class DepositSlipDocumentHandler extends GeneralHandler {
 				throw new ModelException("Error al completar la boleta de deposito:" + Msg.parseTranslation(getCtx(), aBoletaDeposito.getProcessMsg()));
 
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			return new ResultBean(false, null, null);
@@ -179,7 +179,7 @@ public class DepositSlipDocumentHandler extends GeneralHandler {
 			}
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			return new ResultBean(false, null, null);

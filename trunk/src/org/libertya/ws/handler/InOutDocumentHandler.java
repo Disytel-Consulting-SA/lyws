@@ -120,7 +120,7 @@ public class InOutDocumentHandler extends DocumentHandler {
 				throw new ModelException("Error al completar el remito:" + Msg.parseTranslation(getCtx(), anInOut.getProcessMsg()));
 									
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -160,7 +160,7 @@ public class InOutDocumentHandler extends DocumentHandler {
 			MInOut anInOut = new OrderDocumentHandler().createInOutFromOrder(anOrder, completeInOut, data.getDocumentLines(), null, null);
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -216,6 +216,9 @@ public class InOutDocumentHandler extends DocumentHandler {
 			MInOut anInOut = (MInOut)getPO("M_InOut", inOutID, columnName, columnCriteria, true, false, true, true);
 			if (!anInOut.delete(false))
 				throw new ModelException("Error al intentar eliminar el remito " + anInOut.getM_InOut_ID() + ": " + CLogger.retrieveErrorAsString());
+			
+			/* === Commitear transaccion === */ 
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			return new ResultBean(false, null, null);
@@ -280,6 +283,9 @@ public class InOutDocumentHandler extends DocumentHandler {
 			if (!DocumentEngine.processAndSave(anInOut, DocAction.ACTION_Complete, false))
 				throw new ModelException("Error al completar el remito:" + Msg.parseTranslation(getCtx(), anInOut.getProcessMsg()));
 			
+			/* === Commitear transaccion === */ 
+			commitTransaction();
+			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
 			return new ResultBean(false, null, result);
@@ -342,7 +348,7 @@ public class InOutDocumentHandler extends DocumentHandler {
 			}
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();

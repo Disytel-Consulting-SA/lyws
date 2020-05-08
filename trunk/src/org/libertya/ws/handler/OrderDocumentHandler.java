@@ -148,7 +148,7 @@ public class OrderDocumentHandler extends DocumentHandler {
 			}
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -205,6 +205,9 @@ public class OrderDocumentHandler extends DocumentHandler {
 			MOrder anOrder = (MOrder)getPO("C_Order", orderID, columnName, columnCriteria, true, false, true, true);
 			if (!anOrder.delete(false))
 				throw new ModelException("Error al intentar eliminar el pedido " + anOrder.getC_Order_ID() + ": " + CLogger.retrieveErrorAsString());
+			
+			/* === Commitear transaccion === */ 
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			return new ResultBean(false, null, null);
@@ -282,6 +285,9 @@ public class OrderDocumentHandler extends DocumentHandler {
 				anInOut = createInOutFromOrder(anOrder, completeInOut, movementDate, dateAcct);
 			}
 			
+			/* === Commitear transaccion === */ 
+			commitTransaction();
+			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
 			if (anInvoice != null) {
@@ -343,7 +349,7 @@ public class OrderDocumentHandler extends DocumentHandler {
 			}
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -560,7 +566,7 @@ public class OrderDocumentHandler extends DocumentHandler {
 				throw new ModelException("Error al completar el pedido:" + Msg.parseTranslation(getCtx(), anOrder.getProcessMsg()));
 
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -693,9 +699,9 @@ public class OrderDocumentHandler extends DocumentHandler {
 			if (DB.executeUpdate(newSQL.toString(), false, getTrxName(), true) <= 0) {
 				result.setError(true);
 				result.setErrorMsg("Error al actualizar las lineas de pedido: " + CLogger.retrieveErrorAsString() + " SQL: " + newSQL.toString());
-				Trx.getTrx(getTrxName()).rollback();
+				rollbackTransaction();
 			} else {
-				Trx.getTrx(getTrxName()).commit();
+				commitTransaction();
 			}
 			
 			// Retornar status al invoker

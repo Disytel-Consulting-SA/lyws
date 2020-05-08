@@ -47,7 +47,7 @@ public class ProductionOrderDocumentHandler extends GeneralHandler {
 				throw new ModelException("Error al completar la orden:" + Msg.parseTranslation(getCtx(), aProductionOrder.getProcessMsg()));
 
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			HashMap<String, String> result = new HashMap<String, String>();
@@ -83,7 +83,7 @@ public class ProductionOrderDocumentHandler extends GeneralHandler {
 				throw new ModelException("Error al eliminar la orden:" + CLogger.retrieveErrorAsString());
 
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			return new ResultBean(false, null, null);
@@ -116,7 +116,7 @@ public class ProductionOrderDocumentHandler extends GeneralHandler {
 				throw new ModelException("Error al completar la order:" + Msg.parseTranslation(getCtx(), aProductionOrder.getProcessMsg()));
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			return new ResultBean(false, null, null);
@@ -171,7 +171,7 @@ public class ProductionOrderDocumentHandler extends GeneralHandler {
 			}
 			
 			/* === Commitear transaccion === */
-			Trx.getTrx(getTrxName()).commit();
+			commitTransaction();
 			
 			/* === Retornar valor === */
 			return new ResultBean(false, null, null);
