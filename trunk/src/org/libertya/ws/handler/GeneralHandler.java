@@ -120,7 +120,7 @@ public abstract class GeneralHandler {
 		// Setear clientID y orgID en el contexto
 		if (clientID == null || clientID < 0)
 			throw new Exception("Valor clientID (" + clientID + ") incorrecto. ");
-		if (orgID == null || clientID < 0)
+		if (orgID == null || orgID < 0)
 			throw new Exception("Valor orgID (" + orgID + ") incorrecto. ");
 		Env.setContext(getCtx(), "#AD_Client_ID", clientID);
 		Env.setContext(getCtx(), "#AD_Org_ID", orgID);
