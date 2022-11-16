@@ -19,7 +19,6 @@ import org.openXpertya.model.MOrg;
 import org.openXpertya.model.MPreference;
 import org.openXpertya.model.MReplicationHost;
 import org.openXpertya.model.M_Table;
-import org.openXpertya.model.PO;
 import org.openXpertya.replication.AbstractReplicationProcess;
 import org.openXpertya.replication.ReplicationBuilderWS;
 import org.openXpertya.replication.ReplicationConstants;
