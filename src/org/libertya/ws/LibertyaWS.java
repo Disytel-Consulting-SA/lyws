@@ -1265,5 +1265,5 @@ public interface LibertyaWS {
 	 */
 	public CustomServiceResultBean customService(CustomServiceParameterBean data);
 	
-
+	//test
 }
