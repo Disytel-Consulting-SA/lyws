@@ -38,8 +38,8 @@ public class LibertyaWSClient {
 			else
 				locator.setLibertyaWSEndpointAddress(args[0]);
 			// Recuperar el servicio
-			ws.libertya.org.LibertyaWS lyws = locator.getLibertyaWS();
-//			org.libertya.ws.LibertyaWS lyws = new org.libertya.ws.LibertyaWSImpl();
+//			ws.libertya.org.LibertyaWS lyws = locator.getLibertyaWS();
+			org.libertya.ws.LibertyaWS lyws = new org.libertya.ws.LibertyaWSImpl();
 
 /*			
 			ParameterBean data = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);

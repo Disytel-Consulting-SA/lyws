@@ -264,6 +264,108 @@ public interface LibertyaWS {
 	public ResultBean productDelete(ParameterBean data, int productID);
 	
 	/* ===================================================== */
+	/* ========== Lineas, Familias, Subfamilias ============ */
+	/* ===================================================== */
+
+	//Lineas
+	/**
+	 * Alta de product lines
+	 * @param data parametros correspondientes a product lines
+	 * @return ResultBean con OK y el M_Product_Lines_ID generado o ERROR en caso contrario
+	 */
+	public ResultBean productLinesCreate(ParameterBean data);
+	
+	/**
+	 * Recuperacion de product lines a partir de su ID
+	 * @param data parametros correspondientes
+	 * @param productLinesID id de product lines (M_Product_Lines_ID)
+	 * @return ResultBean con los datos correspondientes
+	 */
+	public ResultBean productLinesRetrieveByID(ParameterBean data, int productLinesID);
+	
+	/**
+	 * Actualización de product lines a partir de su ID
+	 * @param data parametros correspondientes
+	 * @param productLinesID identificador de product lines a modificar
+	 * @return ResultBean con OK o ERROR
+	 */
+	public ResultBean productLinesUpdateByID(ParameterBean data, int productLinesID);
+	
+	/**
+	 * Eliminación de product lines
+	 * @param data parametros correspondientes
+	 * @param productLinesID identificador de product lines a eliminar
+	 * @return ResultBean con OK o ERROR
+	 */
+	public ResultBean productLinesDelete(ParameterBean data, int productLinesID);
+	
+	//Gamas
+	
+	/**
+	 * Alta de product gamas
+	 * @param data parametros correspondientes a product gamas
+	 * @return ResultBean con OK y el M_Product_Gamas_ID generado o ERROR en caso contrario
+	 */
+	public ResultBean productGamasCreate(ParameterBean data);
+	
+	/**
+	 * Recuperacion de product gamas a partir de su ID
+	 * @param data parametros correspondientes
+	 * @param productGamasID id de product gamas (M_Product_Gamas_ID)
+	 * @return ResultBean con los datos correspondientes
+	 */
+	public ResultBean productGamasRetrieveByID(ParameterBean data, int productGamasID);
+	
+	/**
+	 * Actualización de product gamas a partir de su ID
+	 * @param data parametros correspondientes
+	 * @param productGamasID identificador de product gamas a modificar
+	 * @return ResultBean con OK o ERROR
+	 */
+	public ResultBean productGamasUpdateByID(ParameterBean data, int productGamasID);
+	
+	/**
+	 * Eliminación de product gamas
+	 * @param data parametros correspondientes
+	 * @param productGamasID identificador de product gamas a eliminar
+	 * @return ResultBean con OK o ERROR
+	 */
+	public ResultBean productGamasDelete(ParameterBean data, int productGamasID);
+	
+	//Category
+	
+	/**
+	 * Alta de product category
+	 * @param data parametros correspondientes a product category
+	 * @return ResultBean con OK y el M_Product_Category_ID generado o ERROR en caso contrario
+	 */
+	public ResultBean productCategoryCreate(ParameterBean data);
+	
+	/**
+	 * Recuperacion de product category a partir de su ID
+	 * @param data parametros correspondientes
+	 * @param productCategoryID id de product category (M_Product_Category_ID)
+	 * @return ResultBean con los datos correspondientes
+	 */
+	public ResultBean productCategoryRetrieveByID(ParameterBean data, int productCategoryID);
+	
+	/**
+	 * Actualización de product category a partir de su ID
+	 * @param data parametros correspondientes
+	 * @param productCategoryID identificador de product category a modificar
+	 * @return ResultBean con OK o ERROR
+	 */
+	public ResultBean productCategoryUpdateByID(ParameterBean data, int productCategoryID);
+	
+	/**
+	 * Eliminación de product category
+	 * @param data parametros correspondientes
+	 * @param productCategoryID identificador de product category a eliminar
+	 * @return ResultBean con OK o ERROR
+	 */
+	public ResultBean productCategoryDelete(ParameterBean data, int productCategoryID);
+	
+	/* ===================================================== */
 	/* ============= Consulta de Comprobantes ============== */
 	/* ===================================================== */
 

@@ -33,6 +33,9 @@ import org.libertya.ws.handler.InvoiceDocumentHandler;
 import org.libertya.ws.handler.OrderDocumentHandler;
 import org.libertya.ws.handler.ProcessExecuteHandler;
 import org.libertya.ws.handler.ProductCRUDHandler;
+import org.libertya.ws.handler.ProductCategoryCRUDHandler;
+import org.libertya.ws.handler.ProductGamasCRUDHandler;
+import org.libertya.ws.handler.ProductLinesCRUDHandler;
 import org.libertya.ws.handler.ProductPriceCRUDHandler;
 import org.libertya.ws.handler.ProductionOrderDocumentHandler;
 import org.libertya.ws.handler.ReplicationServerHandler;
@@ -159,6 +162,64 @@ public class LibertyaWSImpl implements LibertyaWS {
 		return new ProductCRUDHandler().productDelete(data, productID);
 	}
 
+	/* ===================================================== */
+	/* ========== Lineas, Familias, Subfamilias ============ */
+	/* ===================================================== */
+
+	//Lines
+	public ResultBean productLinesCreate(ParameterBean data) {
+		return new ProductLinesCRUDHandler().productTierCreate(data);
+	}
+	
+	public ResultBean productLinesRetrieveByID(ParameterBean data, int productLinesID) {
+		return new ProductLinesCRUDHandler().productTierRetrieveByID(data, productLinesID);
+	}
+	
+	public ResultBean productLinesUpdateByID(ParameterBean data, int productLinesID) {
+		return new ProductLinesCRUDHandler().productTierUpdateByID(data, productLinesID);
+	}
+
+	public ResultBean productLinesDelete(ParameterBean data, int productLinesID) {
+		return new ProductLinesCRUDHandler().productTierDelete(data, productLinesID);
+	}
+	
+	//Gamas
+
+	public ResultBean productGamasCreate(ParameterBean data) {
+		return new ProductGamasCRUDHandler().productTierCreate(data);
+	}
+
+	public ResultBean productGamasRetrieveByID(ParameterBean data, int productGamasID) {
+		return new ProductGamasCRUDHandler().productTierRetrieveByID(data, productGamasID);
+	}
+
+	public ResultBean productGamasUpdateByID(ParameterBean data, int productGamasID) {
+		return new ProductGamasCRUDHandler().productTierUpdateByID(data, productGamasID);
+	}
+
+	public ResultBean productGamasDelete(ParameterBean data, int productGamasID) {
+		return new ProductGamasCRUDHandler().productTierDelete(data, productGamasID);
+	}
+	
+	//Category
+	
+	public ResultBean productCategoryCreate(ParameterBean data) {
+		return new ProductCategoryCRUDHandler().productTierCreate(data);
+	}
+
+	public ResultBean productCategoryRetrieveByID(ParameterBean data, int productCategoryID) {
+		return new ProductCategoryCRUDHandler().productTierRetrieveByID(data, productCategoryID);
+	}
+
+	public ResultBean productCategoryUpdateByID(ParameterBean data, int productCategoryID) {
+		return new ProductCategoryCRUDHandler().productTierUpdateByID(data, productCategoryID);
+	}
+
+	public ResultBean productCategoryDelete(ParameterBean data, int productCategoryID) {
+		return new ProductCategoryCRUDHandler().productTierDelete(data, productCategoryID);
+	}
+	
+	
 	/* ===================================================== */
 	/* ============= Consulta de Comprobantes ============== */
 	/* ===================================================== */

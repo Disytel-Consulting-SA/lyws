@@ -30,6 +30,9 @@ import org.libertya.ws.handler.InvoiceDocumentHandler;
 import org.libertya.ws.handler.OrderDocumentHandler;
 import org.libertya.ws.handler.ProcessExecuteHandler;
 import org.libertya.ws.handler.ProductCRUDHandler;
+import org.libertya.ws.handler.ProductCategoryCRUDHandler;
+import org.libertya.ws.handler.ProductGamasCRUDHandler;
+import org.libertya.ws.handler.ProductLinesCRUDHandler;
 import org.libertya.ws.handler.ProductPriceCRUDHandler;
 import org.libertya.ws.handler.ProductionOrderDocumentHandler;
 import org.libertya.ws.handler.UserCRUDHandler;
@@ -214,6 +217,86 @@ public class LibertyaWSEImpl implements LibertyaWSE {
 	public synchronized SimpleResult productDelete(Login login, int productID) {
 		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
 		ResultBean resultBean = new ProductCRUDHandler().productDelete(bean, productID);
+		return new SimpleResult(resultBean);
+	}
+	
+	/* ===================================================== */
+	/* ========== Lineas, Familias, Subfamilias ============ */
+	/* ===================================================== */
+	
+	//lineas
+	public SimpleResult productLinesCreate(Login login, SimpleMap[] data) {
+		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID(), data);
+		ResultBean resultBean = new ProductLinesCRUDHandler().productTierCreate(bean);
+		return new SimpleResult(resultBean);
+	}
+	
+	public SimpleResult productLinesRetrieveByID(Login login, int productLinesID) {
+		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new ProductLinesCRUDHandler().productTierRetrieveByID(bean, productLinesID);
+		return new SimpleResult(resultBean);
+	}
+	
+	public SimpleResult productLinesUpdateByID(Login login, SimpleMap[] data, int productLinesID) {
+		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID(), data);
+		ResultBean resultBean = new ProductLinesCRUDHandler().productTierUpdateByID(bean, productLinesID);
+		return new SimpleResult(resultBean);
+	}
+
+	public SimpleResult productLinesDelete(Login login, int productLinesID) {
+		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new ProductLinesCRUDHandler().productTierDelete(bean, productLinesID);
+		return new SimpleResult(resultBean);
+	}
+	
+	//gamas
+	public SimpleResult productGamasCreate(Login login, SimpleMap[] data) {
+		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID(), data);
+		ResultBean resultBean = new ProductGamasCRUDHandler().productTierCreate(bean);
+		return new SimpleResult(resultBean);
+	}
+	
+	public SimpleResult productGamasRetrieveByID(Login login, int productGamasID) {
+		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new ProductGamasCRUDHandler().productTierRetrieveByID(bean, productGamasID);
+		return new SimpleResult(resultBean);
+	}
+	
+	public SimpleResult productGamasUpdateByID(Login login, SimpleMap[] data, int productGamasID) {
+		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID(), data);
+		ResultBean resultBean = new ProductGamasCRUDHandler().productTierUpdateByID(bean, productGamasID);
+		return new SimpleResult(resultBean);
+	}
+
+	public SimpleResult productGamasDelete(Login login, int productGamasID) {
+		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new ProductGamasCRUDHandler().productTierDelete(bean, productGamasID);
+		return new SimpleResult(resultBean);
+	}
+	
+	//category
+	
+	public SimpleResult productCategoryCreate(Login login, SimpleMap[] data) {
+		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID(), data);
+		ResultBean resultBean = new ProductCategoryCRUDHandler().productTierCreate(bean);
+		return new SimpleResult(resultBean);
+	}
+	
+	public SimpleResult productCategoryRetrieveByID(Login login, int productCategoryID) {
+		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new ProductCategoryCRUDHandler().productTierRetrieveByID(bean, productCategoryID);
+		return new SimpleResult(resultBean);
+	}
+	
+	public SimpleResult productCategoryUpdateByID(Login login, SimpleMap[] data, int productCategoryID) {
+		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID(), data);
+		ResultBean resultBean = new ProductCategoryCRUDHandler().productTierUpdateByID(bean, productCategoryID);
+		return new SimpleResult(resultBean);
+	}
+
+	public SimpleResult productCategoryDelete(Login login, int productCategoryID) {
+		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new ProductCategoryCRUDHandler().productTierDelete(bean, productCategoryID);
 		return new SimpleResult(resultBean);
 	}
 	
@@ -789,4 +872,6 @@ public class LibertyaWSEImpl implements LibertyaWSE {
 		MultipleRecordsResultBean resultBean = new GeneralRecordQueryHandler().recordQueryDirect(bean, tableName, whereClause); 
 		return new MultipleRecordsResult(resultBean);
 	}
+
+	
 }

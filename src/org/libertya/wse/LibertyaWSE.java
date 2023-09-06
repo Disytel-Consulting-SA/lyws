@@ -157,7 +157,74 @@ public interface LibertyaWSE {
 	 * Wrapper para <code>productDelete(ParameterBean data, int productID)</code>
 	 */
 	public SimpleResult productDelete(Login login, int productID);
+	
+	/* ===================================================== */
+	/* ========== Lineas, Familias, Subfamilias ============ */
+	/* ===================================================== */
+	
+	//lineas
+	/**
+	 * Wrapper para <code>productLinesCreate(ParameterBean data)</code>
+	 */
+	public SimpleResult productLinesCreate(Login login, SimpleMap[] data);
 		
+	/**
+	 * Wrapper para <code>productLinesRetrieveByID(ParameterBean data, int productLinesID)</code>
+	 */
+	public SimpleResult productLinesRetrieveByID(Login login, int productLinesID);
+	
+	/**
+	 * Wrapper para <code>productLinesUpdateByID(ParameterBean data, int productLinesID)</code>
+	 */
+	public SimpleResult productLinesUpdateByID(Login login, SimpleMap[] data, int productLinesID);
+	
+	/**
+	 * Wrapper para <code>productLinesDelete(ParameterBean data, int productLinesID)</code>
+	 */
+	public SimpleResult productLinesDelete(Login login, int productLinesID);
+	
+	//gamas
+	/**
+	 * Wrapper para <code>productGamasCreate(ParameterBean data)</code>
+	 */
+	public SimpleResult productGamasCreate(Login login, SimpleMap[] data);
+		
+	/**
+	 * Wrapper para <code>productGamasRetrieveByID(ParameterBean data, int productGamasID)</code>
+	 */
+	public SimpleResult productGamasRetrieveByID(Login login, int productGamasID);
+	
+	/**
+	 * Wrapper para <code>productGamasUpdateByID(ParameterBean data, int productGamasID)</code>
+	 */
+	public SimpleResult productGamasUpdateByID(Login login, SimpleMap[] data, int productGamasID);
+	
+	/**
+	 * Wrapper para <code>productGamasDelete(ParameterBean data, int productGamasID)</code>
+	 */
+	public SimpleResult productGamasDelete(Login login, int productGamasID);
+	
+	//category
+	/**
+	 * Wrapper para <code>productCategoryCreate(ParameterBean data)</code>
+	 */
+	public SimpleResult productCategoryCreate(Login login, SimpleMap[] data);
+		
+	/**
+	 * Wrapper para <code>productCategoryRetrieveByID(ParameterBean data, int productCategoryID)</code>
+	 */
+	public SimpleResult productCategoryRetrieveByID(Login login, int productCategoryID);
+	
+	/**
+	 * Wrapper para <code>productCategoryUpdateByID(ParameterBean data, int productCategoryID)</code>
+	 */
+	public SimpleResult productCategoryUpdateByID(Login login, SimpleMap[] data, int productCategoryID);
+	
+	/**
+	 * Wrapper para <code>productCategoryDelete(ParameterBean data, int productCategoryID)</code>
+	 */
+	public SimpleResult productCategoryDelete(Login login, int productCategoryID);
+	
 	/* ===================================================== */
 	/* ============= Consulta de Comprobantes ============== */
 	/* ===================================================== */
