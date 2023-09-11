@@ -33,6 +33,9 @@ public abstract class ProductTiersCRUDHandler extends GeneralHandler {
 	public ResultBean productTierCreate(ParameterBean data)
 	{
 		try {
+			//Config inicial
+			init(data, new String[]{}, new Object[]{});
+			
 			PO po = getPOEntity(0);
 			setValues(po, data.getMainTable(), true);
 			if (!po.save())
@@ -67,6 +70,9 @@ public abstract class ProductTiersCRUDHandler extends GeneralHandler {
 		
 		try
 		{	
+			//Config inicial
+			init(data, new String[]{}, new Object[]{});
+			
 			//recuperar por ID
 			PO po = getPOEntity(ID);
 			
@@ -95,6 +101,9 @@ public abstract class ProductTiersCRUDHandler extends GeneralHandler {
 		
 		try
 		{	
+			//Config inicial
+			init(data, new String[]{}, new Object[]{});
+			
 			//recuperar por ID
 			PO po = getPOEntity(ID);
 			if (po == null || getEntityID(po) == 0)
@@ -131,6 +140,9 @@ public abstract class ProductTiersCRUDHandler extends GeneralHandler {
 	{
 		try
 		{
+			//Config inicial
+			init(data, new String[]{}, new Object[]{});
+			
 			PO po = getPOEntity(ID);
 			if (po==null || getEntityID(po) == 0 )
 				throw new ModelException("No se ha podido recuperar " + getEntityName() + " a partir de los parametros indicados");

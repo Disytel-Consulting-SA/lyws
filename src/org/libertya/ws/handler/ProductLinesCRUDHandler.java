@@ -7,7 +7,7 @@ public class ProductLinesCRUDHandler extends ProductTiersCRUDHandler {
 
 	@Override
 	PO getPOEntity(int id) {
-		return new MProductLines(getCtx(), 0, getTrxName());
+		return new MProductLines(getCtx(), id, getTrxName());
 	}
 
 	@Override

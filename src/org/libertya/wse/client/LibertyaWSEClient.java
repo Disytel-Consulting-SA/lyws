@@ -7,12 +7,14 @@ import org.libertya.wse.common.SimpleMap;
 import org.libertya.wse.param.Login;
 import org.libertya.wse.result.SimpleResult;
 
+import wse.libertya.org.LibertyaWSEServiceLocator;
+
 //import wse.libertya.org.LibertyaWSEServiceLocator;
 
 public class LibertyaWSEClient {
 
 	public static void main(String[] args) {
-//		try {
+		try {
 //			// Conexión al WS
 //			LibertyaWSEServiceLocator locator = new LibertyaWSEServiceLocator();
 //			// Redefinir URL del servicio?
@@ -22,15 +24,196 @@ public class LibertyaWSEClient {
 //				locator.setLibertyaWSEEndpointAddress(args[0]);
 //			// Recuperar el servicio
 //			wse.libertya.org.LibertyaWSE lywse = locator.getLibertyaWSE();
-////			org.libertya.wse.LibertyaWSE lywse = new org.libertya.wse.LibertyaWSEImpl();
+			org.libertya.wse.LibertyaWSE lywse = new org.libertya.wse.LibertyaWSEImpl();
 //
 ///*			
 //			// Definicion de login 
-//			Login aLogin = new Login();
-//			aLogin.setUserName("AdminLibertya");
-//			aLogin.setPassword("AdminLibertya");
-//			aLogin.setClientID(1010016);
-//			aLogin.setOrgID(1010053);
+			Login aLogin = new Login();
+			aLogin.setUserName("AdminLibertya"); 
+			aLogin.setPassword("AdminLibertya"); 
+			aLogin.setClientID(1010016); 
+			aLogin.setOrgID(0);
+			
+			
+			/* #######################################################
+			 * ####################### Lineas ########################
+			 * #######################################################
+			 */
+			
+			//Create
+//			SimpleMap[] data = new SimpleMap[3];
+//				SimpleMap name = new SimpleMap();
+//					name.setKey("name");
+//					name.setValue("test_lyws");
+//					data[0] = name;
+//				SimpleMap description = new SimpleMap();
+//					description.setKey("description");
+//					description.setValue("test_lyws WSE");
+//					data[1] = description;
+//				SimpleMap value = new SimpleMap();
+//					value.setKey("value");
+//					value.setValue("test_lyws");
+//					data[2] = value;
+//			SimpleResult result = lywse.productLinesCreate(aLogin, data);
+//			if (!result.isError()) {
+//				System.out.println(result.getResultValues()[0].getValue());
+//			} else 
+//				System.out.println(result.getErrorMsg());
+			
+			//Read
+//			SimpleResult result = lywse.productLinesRetrieveByID(aLogin, Integer.valueOf("1010203"));
+//			if (!result.isError()) {
+//				SimpleMap[] resvalues = result.getResultValues();
+//				for(SimpleMap resvalue : resvalues) {
+//					System.out.println(resvalue.getKey() + ": " + resvalue.getValue());
+//				}
+//			} else 
+//				System.out.println(result.getErrorMsg());
+			
+			//Update
+//			SimpleMap[] data = new SimpleMap[1];
+//			SimpleMap description = new SimpleMap();
+//				description.setKey("description");
+//				description.setValue("descripcion actualizada by ID");
+//				data[0] = description;
+//			SimpleResult result = lywse.productLinesUpdateByID(aLogin, data, Integer.valueOf("1010203"));
+//			if (!result.isError()) {
+//				System.out.println(result.getResultValues()[0].getValue());
+//			} else 
+//				System.out.println(result.getErrorMsg());
+			
+			//Delete
+//			SimpleResult result = lywse.productLinesDelete(aLogin, Integer.valueOf("1010203"));
+//			if (!result.isError()) {
+//				SimpleMap[] resvalues = result.getResultValues();
+//				for(SimpleMap resvalue : resvalues) {
+//					System.out.println(resvalue.getKey() + ": " + resvalue.getValue());
+//				}
+//			} else 
+//				System.out.println(result.getErrorMsg());
+			
+			
+			/* #######################################################
+			 * ####################### Gamas ########################
+			 * #######################################################
+			 */
+			//Create
+//			SimpleMap[] data = new SimpleMap[3];
+//			SimpleMap name = new SimpleMap();
+//				name.setKey("name");
+//				name.setValue("test_lyws");
+//				data[0] = name;
+//			SimpleMap description = new SimpleMap();
+//				description.setKey("description");
+//				description.setValue("test_lyws WSE");
+//				data[1] = description;
+//			SimpleMap value = new SimpleMap();
+//				value.setKey("value");
+//				value.setValue("test_lyws");
+//				data[2] = value;
+//			SimpleResult result = lywse.productGamasCreate(aLogin, data);
+//			if (!result.isError()) {
+//				System.out.println(result.getResultValues()[0].getValue());
+//			} else 
+//				System.out.println(result.getErrorMsg());
+			
+
+			//Read
+//			SimpleResult result = lywse.productGamasRetrieveByID(aLogin, Integer.valueOf("1010211"));
+//			if (!result.isError()) {
+//				SimpleMap[] resvalues = result.getResultValues();
+//				for(SimpleMap resvalue : resvalues) {
+//					System.out.println(resvalue.getKey() + ": " + resvalue.getValue());
+//				}
+//			} else 
+//				System.out.println(result.getErrorMsg());
+			
+			//Update
+//			SimpleMap[] data = new SimpleMap[1];
+//			SimpleMap description = new SimpleMap();
+//				description.setKey("description");
+//				description.setValue("descripcion actualizada by ID");
+//				data[0] = description;
+//			SimpleResult result = lywse.productGamasUpdateByID(aLogin, data, Integer.valueOf("1010211"));
+//			if (!result.isError()) {
+//				System.out.println(result.getResultValues()[0].getValue());
+//			} else 
+//				System.out.println(result.getErrorMsg());
+			
+			//Delete
+//			SimpleResult result = lywse.productGamasDelete(aLogin, Integer.valueOf("1010211"));
+//			if (!result.isError()) {
+//				SimpleMap[] resvalues = result.getResultValues();
+//				for(SimpleMap resvalue : resvalues) {
+//					System.out.println(resvalue.getKey() + ": " + resvalue.getValue());
+//				}
+//			} else 
+//				System.out.println(result.getErrorMsg());
+			
+			
+			
+			/* #######################################################
+			 * ####################### Category ########################
+			 * #######################################################
+			 */
+			//Create
+//			SimpleMap[] data = new SimpleMap[3];
+//			SimpleMap name = new SimpleMap();
+//				name.setKey("name");
+//				name.setValue("test_lyws");
+//				data[0] = name;
+//			SimpleMap description = new SimpleMap();
+//				description.setKey("description");
+//				description.setValue("test_lyws WSE");
+//				data[1] = description;
+//			SimpleMap value = new SimpleMap();
+//				value.setKey("value");
+//				value.setValue("test_lyws");
+//				data[2] = value;
+//			SimpleResult result = lywse.productCategoryCreate(aLogin, data);
+//			if (!result.isError()) {
+//				System.out.println(result.getResultValues()[0].getValue());
+//			} else 
+//				System.out.println(result.getErrorMsg());
+			
+
+			//Read
+//			SimpleResult result = lywse.productCategoryRetrieveByID(aLogin, Integer.valueOf("1010342"));
+//			if (!result.isError()) {
+//				SimpleMap[] resvalues = result.getResultValues();
+//				for(SimpleMap resvalue : resvalues) {
+//					System.out.println(resvalue.getKey() + ": " + resvalue.getValue());
+//				}
+//			} else 
+//				System.out.println(result.getErrorMsg());
+			
+			//Update
+//			SimpleMap[] data = new SimpleMap[1];
+//			SimpleMap description = new SimpleMap();
+//				description.setKey("description");
+//				description.setValue("descripcion actualizada by ID");
+//				data[0] = description;
+//			SimpleResult result = lywse.productCategoryUpdateByID(aLogin, data, Integer.valueOf("1010342"));
+//			if (!result.isError()) {
+//				System.out.println(result.getResultValues()[0].getValue());
+//			} else 
+//				System.out.println(result.getErrorMsg());
+			
+			//Delete
+//			SimpleResult result = lywse.productCategoryDelete(aLogin, Integer.valueOf("1010342"));
+//			if (!result.isError()) {
+//				SimpleMap[] resvalues = result.getResultValues();
+//				for(SimpleMap resvalue : resvalues) {
+//					System.out.println(resvalue.getKey() + ": " + resvalue.getValue());
+//				}
+//			} else 
+//				System.out.println(result.getErrorMsg());
+			
+			
+			
+			
+			
+			
 //			
 //			
 //			SimpleResult result = lywse.processGeneratePromotionCode(aLogin, null);
@@ -405,9 +588,9 @@ public class LibertyaWSEClient {
 ////			System.out.println(result2.getResultValues());
 ////
 //
-//		}
-//		catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

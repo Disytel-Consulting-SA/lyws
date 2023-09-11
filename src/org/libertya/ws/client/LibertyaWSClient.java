@@ -41,6 +41,125 @@ public class LibertyaWSClient {
 //			ws.libertya.org.LibertyaWS lyws = locator.getLibertyaWS();
 			org.libertya.ws.LibertyaWS lyws = new org.libertya.ws.LibertyaWSImpl();
 
+			//creacion del ParameterBean
+//			ParameterBean test_data = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+			
+			
+			/* #######################################################
+			 * ####################### Lineas ########################
+			 * #######################################################
+			 */
+			
+			//Create
+//			ParameterBean test_data = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			test_data.addColumnToMainTable("name", "test_lyws");
+//			test_data.addColumnToMainTable("description", "test_lyws");
+//			test_data.addColumnToMainTable("value", "test_lyws");
+//			ResultBean restest = lyws.productLinesCreate(test_data);
+//			System.out.println(restest);
+			
+			//Read
+//			ParameterBean test_data2 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 0);
+//			ResultBean restest = lyws.productLinesRetrieveByID(test_data2, Integer.valueOf("1010201"));
+//			System.out.println(restest);
+			
+			//Update
+			ParameterBean test_data3 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 0);
+			test_data3.addColumnToMainTable("description", "description update by id exitoso");
+			ResultBean restest = lyws.productLinesUpdateByID(test_data3, Integer.valueOf("1010201"));
+			System.out.println(restest);
+			
+			//Delete
+//			ParameterBean test_data4 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 0);
+//			ResultBean restest = lyws.productLinesDelete(test_data4, Integer.valueOf("1010201"));
+//			System.out.println(restest);
+			
+			
+			
+			/* #######################################################
+			 * ####################### Gamas ########################
+			 * #######################################################
+			 */
+			//Create
+//			ParameterBean test_data = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			test_data.addColumnToMainTable("name", "test_lyws");
+//			test_data.addColumnToMainTable("description", "test_lyws");
+//			test_data.addColumnToMainTable("value", "test_lyws");
+//			ResultBean restest = lyws.productGamasCreate(test_data);
+//			System.out.println(restest);
+			
+			//Read
+//			ParameterBean test_data2 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 0);
+//			ResultBean restest = lyws.productGamasRetrieveByID(test_data2, Integer.valueOf("1010210"));
+//			System.out.println(restest);
+			
+			//Update
+//			ParameterBean test_data3 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 0);
+//			test_data3.addColumnToMainTable("description", "description update by id exitoso");
+//			ResultBean restest = lyws.productGamasUpdateByID(test_data3, Integer.valueOf("1010210"));
+//			System.out.println(restest);
+			
+			//Delete
+//			ParameterBean test_data4 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 0);
+//			ResultBean restest = lyws.productGamasDelete(test_data4, Integer.valueOf("1010210"));
+//			System.out.println(restest);
+			
+			
+			
+			/* #######################################################
+			 * ####################### Category ########################
+			 * #######################################################
+			 */
+			//Create
+//			ParameterBean test_data = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			test_data.addColumnToMainTable("name", "test_lyws");
+//			test_data.addColumnToMainTable("description", "test_lyws");
+//			test_data.addColumnToMainTable("value", "test_lyws");
+//			ResultBean restest = lyws.productCategoryCreate(test_data);
+//			System.out.println(restest);
+			
+			//Read
+//			ParameterBean test_data2 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 0);
+//			ResultBean restest = lyws.productCategoryRetrieveByID(test_data2, Integer.valueOf("1010341"));
+//			System.out.println(restest);
+			
+			//Update
+//			ParameterBean test_data3 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 0);
+//			test_data3.addColumnToMainTable("description", "description update by id exitoso");
+//			ResultBean restest = lyws.productCategoryUpdateByID(test_data3, Integer.valueOf("1010341"));
+//			System.out.println(restest);
+			
+			//Delete
+//			ParameterBean test_data4 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 0);
+//			ResultBean restest = lyws.productCategoryDelete(test_data4, Integer.valueOf("1010341"));
+//			System.out.println(restest);
+
+			
+			
+			
+			
+			
+//			test.addColumnToMainTable("Description", "Test");
+//			test.addColumnToMainTable("IsSold", "Y");
+//			test.addColumnToMainTable("C_TaxCategory_ID", "1000023");
+//			test.addColumnToMainTable("M_Product_Category_ID", "1000056");
+//			test.addColumnToMainTable("RequireSerNo", "N");
+//			test.addColumnToMainTable("C_UOM_ID", "100");
+//			test.addColumnToMainTable("Name", "Test Jaco ( / Vta Directa)");
+//			test.addColumnToMainTable("ItHasReplenishment", "N");
+//			test.addColumnToMainTable("IsActive", "Y");
+//			test.addColumnToMainTable("ProductType", "S");
+//			test.addColumnToMainTable("GuaranteeType", "3 meses");
+//			test.addColumnToMainTable("Attr03", "25");
+//			test.addColumnToMainTable("CheckoutPlace", "B");
+//			test.addColumnToMainTable("Attr01", "27");
+//			test.addColumnToMainTable("UPC", "1254789632548");
+//			test.addColumnToMainTable("IsPurchased", "Y");
+//			test.addColumnToMainTable("Attr02", "112218");
+//			ResultBean restest = lyws.productCreate(test);
+//			System.out.println(restest);
+					
+			
 /*			
 			ParameterBean data = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
 			ResultBean result = lyws.processGeneratePromotionCode(data);
@@ -51,6 +170,7 @@ public class LibertyaWSClient {
 */		
 						
 			
+			/*
 			ParameterBean data = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
 			data.addColumnToMainTable("tablename", "C_Invoice");
 			data.addColumnToMainTable("recordID", "1021812");
@@ -64,7 +184,7 @@ public class LibertyaWSClient {
 				fos.write(pdf);
 				fos.close();			
 			}
-	
+	*/
 			
 			
 			
