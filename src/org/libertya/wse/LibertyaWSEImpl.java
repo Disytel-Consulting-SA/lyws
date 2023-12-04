@@ -27,6 +27,8 @@ import org.libertya.ws.handler.GeneralRecordQueryHandler;
 import org.libertya.ws.handler.InOutDocumentHandler;
 import org.libertya.ws.handler.InventoryDocumentHandler;
 import org.libertya.ws.handler.InvoiceDocumentHandler;
+import org.libertya.ws.handler.JournalBatchCRUDHandler;
+import org.libertya.ws.handler.JournalDocumentHandler;
 import org.libertya.ws.handler.OrderDocumentHandler;
 import org.libertya.ws.handler.ProcessExecuteHandler;
 import org.libertya.ws.handler.ProductCRUDHandler;
@@ -299,6 +301,145 @@ public class LibertyaWSEImpl implements LibertyaWSE {
 		ResultBean resultBean = new ProductCategoryCRUDHandler().productTierDelete(bean, productCategoryID);
 		return new SimpleResult(resultBean);
 	}
+	
+	/* ===================================================== */
+	/* ====================== Diarios ====================== */
+	/* ===================================================== */
+	
+	@Override
+	public synchronized SimpleResult journalCreate(Login login, SimpleMap[] header, DocumentLine[] lines, boolean completeJournal) {
+		DocumentParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID(), header, lines);
+		ResultBean resultBean = new JournalDocumentHandler().journalCreate(bean, completeJournal);
+		return new SimpleResult(resultBean);
+	}
+
+	@Override
+	public synchronized SimpleResult journalDeleteByID(Login login, SimpleMap[] data, int journalID) {
+		ParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new JournalDocumentHandler().journalDeleteByID(bean, journalID);
+		return new SimpleResult(resultBean);
+	}
+
+	@Override
+	public synchronized SimpleResult journalDeleteByColumn(Login login, SimpleMap[] data, String columnName, String columnCriteria) {
+		ParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new JournalDocumentHandler().journalDeleteByColumn(bean, columnName, columnCriteria);
+		return new SimpleResult(resultBean);
+	}
+
+	@Override
+	public synchronized SimpleResult journalCompleteByID(Login login, SimpleMap[] data, int journalID) {
+		ParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new JournalDocumentHandler().journalCompleteByID(bean, journalID);
+		return new SimpleResult(resultBean);
+	}
+
+	@Override
+	public synchronized SimpleResult journalCompleteByColumn(Login login, SimpleMap[] data, String columnName,
+			String columnCriteria) {
+		ParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new JournalDocumentHandler().journalCompleteByColumn(bean, columnName, columnCriteria);
+		return new SimpleResult(resultBean);
+	}
+
+	@Override
+	public synchronized SimpleResult journalVoidByID(Login login, SimpleMap[] data, int journalID) {
+		ParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new JournalDocumentHandler().journalVoidByID(bean, journalID);
+		return new SimpleResult(resultBean);
+	}
+
+	@Override
+	public synchronized SimpleResult journalVoidByColumn(Login login, SimpleMap[] data, String columnName, String columnCriteria) {
+		ParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new JournalDocumentHandler().journalVoidByColumn(bean, columnName, columnCriteria);
+		return new SimpleResult(resultBean);
+	}
+
+	@Override
+	public synchronized SimpleResult documentRetrieveJournalByID(Login login, SimpleMap[] data, int journalID) {
+		ParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new JournalDocumentHandler().documentRetrieveJournalByID(bean, journalID);
+		return new SimpleResult(resultBean);
+	}
+
+	@Override
+	public synchronized SimpleResult documentRetrieveJournalByColumn(Login login, SimpleMap[] data, String column, String value) {
+		ParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new JournalDocumentHandler().documentRetrieveJournalByColumn(bean, column, value);
+		return new SimpleResult(resultBean);
+	}
+	
+	/* ===================================================== */
+	/* ================= Lotes de asientos ================= */
+	/* ===================================================== */
+	
+//	@Override
+//	public SimpleResult journalBatchCreate(Login login, SimpleMap[] data, boolean completeJournalBatch) {
+//		OrderParameterBean bean = new OrderParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+//		ResultBean resultBean = new JournalBatchCRUDHandler().journalBatchCreate(bean, completeJournalBatch);
+//		return new SimpleResult(resultBean);
+//	}
+//
+//	@Override
+//	public SimpleResult journalBatchDeleteByID(Login login, SimpleMap[] data, int orderID) {
+//		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+//		ResultBean resultBean = new JournalBatchCRUDHandler().journalBatchDeleteByID(bean, orderID);
+//		return new SimpleResult(resultBean);
+//	}
+//
+//	@Override
+//	public SimpleResult journalBatchDeleteByColumn(Login login, SimpleMap[] data, String columnName,
+//			String columnCriteria) {
+//		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+//		ResultBean resultBean = new JournalBatchCRUDHandler().journalBatchDeleteByColumn(bean, columnName, columnCriteria);
+//		return new SimpleResult(resultBean);
+//	}
+//
+//	@Override
+//	public SimpleResult journalBatchCompleteByID(Login login, SimpleMap[] data, int journalBatchID) {
+//		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+//		ResultBean resultBean = new JournalBatchCRUDHandler().journalBatchCompleteByID(bean, journalBatchID);
+//		return new SimpleResult(resultBean);
+//	}
+//
+//	@Override
+//	public SimpleResult journalBatchCompleteByColumn(Login login, SimpleMap[] data, String columnName,
+//			String columnCriteria) {
+//		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+//		ResultBean resultBean = new JournalBatchCRUDHandler().journalBatchCompleteByColumn(bean, columnName, columnCriteria);
+//		return new SimpleResult(resultBean);
+//	}
+//
+//	@Override
+//	public SimpleResult journalBatchVoidByID(Login login, SimpleMap[] data, int journalBatchID) {
+//		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+//		ResultBean resultBean = new JournalBatchCRUDHandler().journalBatchVoidByID(bean, journalBatchID);
+//		return new SimpleResult(resultBean);
+//	}
+//
+//	@Override
+//	public SimpleResult journalBatchVoidByColumn(Login login, SimpleMap[] data, String columnName,
+//			String columnCriteria) {
+//		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+//		ResultBean resultBean = new JournalBatchCRUDHandler().journalBatchVoidByColumn(bean, columnName, columnCriteria);
+//		return new SimpleResult(resultBean);
+//	}
+//
+//	@Override
+//	public SimpleResult documentRetrieveJournalBatchByID(Login login, SimpleMap[] data, int journalBatchID) {
+//		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+//		ResultBean resultBean = new JournalBatchCRUDHandler().documentRetrieveJournalBatchByID(bean, journalBatchID);
+//		return new SimpleResult(resultBean);
+//	}
+//	
+//	@Override
+//	public SimpleResult documentRetrieveJournalBatchByColumn(Login login, SimpleMap[] data, String column,
+//			String value) {
+//		ParameterBean bean = new ParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+//		ResultBean resultBean = new JournalBatchCRUDHandler().documentRetrieveJournalBatchByColumn(bean, column, value);
+//		return new SimpleResult(resultBean);
+//	}
 	
 	/* ===================================================== */
 	/* ============= Consulta de Comprobantes ============== */

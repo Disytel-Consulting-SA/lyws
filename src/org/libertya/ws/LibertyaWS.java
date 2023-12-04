@@ -366,6 +366,181 @@ public interface LibertyaWS {
 	public ResultBean productCategoryDelete(ParameterBean data, int productCategoryID);
 	
 	/* ===================================================== */
+	/* ====================== Diarios === ================== */
+	/* ===================================================== */
+	
+	
+	//Alta de Diario
+	
+	/**
+	 * Alta de Diario
+	 * @param data parametros correspondientes
+	 * @param completeJournal
+	 * @return ResultBean con OK o ERROR
+	 */
+	public ResultBean journalCreate(DocumentParameterBean data, boolean completeJournal);
+
+	
+	//Baja de Diario en Borrador
+	
+	/**
+	 * Baja de Diario en borrador por id
+	 * @param data parametros correspondientes
+	 * @param journalID identificador -> GL_Journal_ID
+	 * @return ResultBean con OK o ERROR
+	 */
+	public ResultBean journalDeleteByID(ParameterBean data, int journalID);
+	
+	/**
+	 * Baja de Diario en borrador por columna
+	 * @param data parametros correspondientes
+	 * @param columnName columna correspondiente
+	 * @param columnCriteria criterio de eliminacion
+	 * @return ResultBean con OK o ERROR
+	 */
+	public ResultBean journalDeleteByColumn(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria);
+
+
+	//Completado de Diario
+    
+	/**
+	 * Completado de diario en borrador por id
+	 * @param journalID identificador
+	 * @return ResultBean con OK o ERROR
+	 */
+	public ResultBean journalCompleteByID(ParameterBean data, int journalID);
+	
+	/**
+	 * Completado de diario en borrador por columna
+	 * @param columnName columna correspondiente
+	 * @param columnCriteria criterio de eliminacion
+	 * @return ResultBean con OK o ERROR
+	 */
+	public ResultBean journalCompleteByColumn(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria);
+
+	//Anulación de Diario
+	
+	/**
+	 * Anulacion de Diario por id
+	 * @param journalID identificador (GL_Journal_ID)
+	 * @return ResultBean con IsError, ErrorMsg
+	 */
+	public ResultBean journalVoidByID(ParameterBean data,int journalID);
+	
+	/**
+	 * Anulacion de diario por columna
+	 * @param columnName columna correspondiente
+	 * @param columnCriteria criterio de eliminacion
+	 * @return ResultBean con IsError, ErrorMsg
+	 */
+	public ResultBean journalVoidByColumn(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria);
+
+	//Consulta de Diario
+
+	/**
+	 * Consulta de Diario por id
+	 * @param journalID identificador (GL_Journal_ID)
+	 * @return ResultBean con datos
+	 */
+	public DocumentResultBean documentRetrieveJournalByID(ParameterBean data, int journalID);
+	
+	/**
+	 * Consulta de Diario por columna
+	 * @param data parametros correspondientes
+	 * @param columnName columna correspondiente
+	 * @param columnCriteria criterio de eliminacion
+	 * @return ResultBean con datos
+	 */
+	public DocumentResultBean documentRetrieveJournalByColumn(ParameterBean data, java.lang.String column, java.lang.String value);
+	
+	
+	/* ===================================================== */
+	/* ================= Lote de Asientos  ================= */
+	/* ===================================================== */
+	
+	//Alta de Lote de Asientos
+	
+	/**
+	 * Alta de lote de asientos
+	 * @param data parametros correspondientes
+	 * @param completeJournalBatch
+	 * @return ResultBean con OK o ERROR
+	 */
+    //public ResultBean journalBatchCreate(OrderParameterBean data, boolean completeJournalBatch);
+    
+    //Baja de Lote de Asientos en Borrador
+    
+    /**
+	 * Baja de lote de asientos en borrador por id
+	 * @param data parametros correspondientes
+	 * @param orderID identificador
+	 * @return ResultBean con OK o ERROR
+	 */
+    //public ResultBean journalBatchDeleteByID(ParameterBean data, int orderID);
+    
+    /**
+	 * Baja de lote de asientos en borrador por columna
+	 * @param data parametros correspondientes
+	 * @param columnName columna correspondiente
+	 * @param columnCriteria criterio de eliminacion
+	 * @return ResultBean con OK o ERROR
+	 */
+    //public ResultBean journalBatchDeleteByColumn(ParameterBean data, String columnName, String columnCriteria);
+    
+    //Completado de Lote de Asientos
+    
+    /**
+	 * Completado de lote de asientos en borrador por id
+	 * @param journalBatchID identificador
+	 * @return ResultBean con OK o ERROR
+	 */
+    //public ResultBean journalBatchCompleteByID(ParameterBean data, int journalBatchID);
+    
+    /**
+	 * Completado de lote de asientos en borrador por columna
+	 * @param columnName columna correspondiente
+	 * @param columnCriteria criterio de eliminacion
+	 * @return ResultBean con OK o ERROR
+	 */
+    //public ResultBean journalBatchCompleteByColumn(ParameterBean data, String columnName, String columnCriteria);
+    
+    //Anulación de Lote de Asientos
+    
+    /**
+	 * Anulacion de lote de asientos por id
+	 * @param journalBatchID identificador
+	 * @return ResultBean con OK o ERROR
+	 */
+    //public ResultBean journalBatchVoidByID(ParameterBean data, int journalBatchID);
+    
+    /**
+	 * Anulacion de lote de asientos por columna
+	 * @param columnName columna correspondiente
+	 * @param columnCriteria criterio de eliminacion
+	 * @return ResultBean con OK o ERROR
+	 */
+    //public ResultBean journalBatchVoidByColumn(ParameterBean data, String columnName, String columnCriteria);
+    
+    //Consulta de Lotes de Asientos
+    
+    /**
+	 * Consulta de lote de asientos por id
+	 * @param journalBatchID identificador
+	 * @return ResultBean con datos
+	 */
+    //public DocumentResultBean documentRetrieveJournalBatchByID(ParameterBean data, int journalBatchID);
+    
+    /**
+	 * Consulta de lote de asientos por columna
+	 * @param data parametros correspondientes
+	 * @param columnName columna correspondiente
+	 * @param columnCriteria criterio de eliminacion
+	 * @return ResultBean con datos
+	 */
+    //public DocumentResultBean documentRetrieveJournalBatchByColumn(ParameterBean data, String column, String value);
+	
+	
+	/* ===================================================== */
 	/* ============= Consulta de Comprobantes ============== */
 	/* ===================================================== */
 

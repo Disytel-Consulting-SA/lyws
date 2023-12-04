@@ -1,5 +1,9 @@
 package org.libertya.wse;
 
+import org.libertya.ws.bean.parameter.OrderParameterBean;
+import org.libertya.ws.bean.parameter.ParameterBean;
+import org.libertya.ws.bean.result.DocumentResultBean;
+import org.libertya.ws.bean.result.ResultBean;
 import org.libertya.wse.common.ListedMap;
 import org.libertya.wse.common.RecordContent;
 import org.libertya.wse.common.SimpleMap;
@@ -224,6 +228,132 @@ public interface LibertyaWSE {
 	 * Wrapper para <code>productCategoryDelete(ParameterBean data, int productCategoryID)</code>
 	 */
 	public SimpleResult productCategoryDelete(Login login, int productCategoryID);
+	
+	/* ===================================================== */
+	/* ====================== Diarios ====================== */
+	/* ===================================================== */
+	
+	//Alta de Diario
+	
+	/**
+	 * Wrapper para <code>journalCreate(OrderParameterBean data, boolean completeJournal)</code>
+	 */
+	public SimpleResult journalCreate(Login login, SimpleMap[] header, DocumentLine[] lines, boolean completeJournal);
+
+	
+	//Baja de Diario en Borrador
+	
+	/**
+	 * Wrapper para <code>journalDeleteByID(ParameterBean data, int journalID)</code>
+	 */
+	public SimpleResult journalDeleteByID(Login login, SimpleMap[] data, int journalID);
+	
+	/**
+	 * Wrapper para <code>journalDeleteByColumn(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria)</code>
+	 */
+	public SimpleResult journalDeleteByColumn(Login login, SimpleMap[] data, String columnName, String columnCriteria);
+
+
+	//Completado de Diario
+    
+	/**
+	 * Wrapper para <code>journalCompleteByID(ParameterBean data, int journalID)</code>
+	 */
+	public SimpleResult journalCompleteByID(Login login, SimpleMap[] data, int journalID);
+	
+	/**
+	 * Wrapper para <code>journalCompleteByColumn(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria)</code>
+	 */
+	public SimpleResult journalCompleteByColumn(Login login, SimpleMap[] data, String columnName, String columnCriteria);
+
+	//Anulación de Diario
+	
+	/**
+	 * Wrapper para <code>journalVoidByID(ParameterBean data,int journalID)</code>
+	 */
+	public SimpleResult journalVoidByID(Login login, SimpleMap[] data,int journalID);
+	
+	/**
+	 * Wrapper para <code>journalVoidByColumn(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria)</code>
+	 */
+	public SimpleResult journalVoidByColumn(Login login, SimpleMap[] data, String columnName, String columnCriteria);
+
+	//Consulta de Diario
+
+	/**
+	 * Wrapper para <code>documentRetrieveJournalByID(ParameterBean data, int journalID)</code>
+	 */
+	public SimpleResult documentRetrieveJournalByID(Login login, SimpleMap[] data, int journalID);
+	
+	/**
+	 * Wrapper para <code>documentRetrieveJournalByColumn(ParameterBean data, java.lang.String column, java.lang.String value)</code>
+	 */
+	public SimpleResult documentRetrieveJournalByColumn(Login login, SimpleMap[] data, String column, String value);
+	
+	
+	/* ===================================================== */
+	/* ================= Lotes de asientos ================= */
+	/* ===================================================== */
+
+	//Alta de Lote de Asientos
+	
+	/**
+	 * Wrapper para <code>journalBatchCreate(OrderParameterBean data, boolean completeJournalBatch)</code>
+	 */
+	//public SimpleResult journalBatchCreate(Login login, SimpleMap[] data, boolean completeJournalBatch);
+	    
+	
+	//Baja de Lote de Asientos en Borrador
+	
+	/**
+	 * Wrapper para <code>journalBatchDeleteByID(ParameterBean data, int orderID)</code>
+	 */
+	//public SimpleResult journalBatchDeleteByID(Login login, SimpleMap[] data, int orderID);
+	
+	/**
+	 * Wrapper para <code>journalBatchDeleteByColumn(ParameterBean data, String columnName, String columnCriteria)</code>
+	 */
+	//public SimpleResult journalBatchDeleteByColumn(Login login, SimpleMap[] data, String columnName, String columnCriteria);
+	
+	    
+	//Completado de Lote de Asientos
+	
+    /**
+	 * Wrapper para <code>journalBatchCompleteByID(ParameterBean data, int journalBatchID)</code>
+	 */
+	//public SimpleResult journalBatchCompleteByID(Login login, SimpleMap[] data, int journalBatchID);
+	
+	/**
+	 * Wrapper para <code>journalBatchCompleteByColumn(ParameterBean data, String columnName, String columnCriteria)</code>
+	 */
+	//public SimpleResult journalBatchCompleteByColumn(Login login, SimpleMap[] data, String columnName, String columnCriteria);
+		
+	
+	//Anulación de Lote de Asientos
+    
+	/**
+	 * Wrapper para <code>journalBatchVoidByID(ParameterBean data, int journalBatchID)</code>
+	 */
+	//public SimpleResult journalBatchVoidByID(Login login, SimpleMap[] data, int journalBatchID);
+	
+	/**
+	 * Wrapper para <code>journalBatchVoidByColumn(ParameterBean data, String columnName, String columnCriteria)</code>
+	 */
+	//public SimpleResult journalBatchVoidByColumn(Login login, SimpleMap[] data, String columnName, String columnCriteria);
+		
+	//Consulta de Lotes de Asientos
+		
+	/**
+	 * Wrapper para <code>documentRetrieveJournalBatchByID(ParameterBean data, int journalBatchID)</code>
+	 */
+	//public SimpleResult documentRetrieveJournalBatchByID(Login login, SimpleMap[] data, int journalBatchID);
+	
+	/**
+	 * Wrapper para <code>documentRetrieveJournalBatchByColumn(ParameterBean data, String column, String value)</code>
+	 */
+	//public SimpleResult documentRetrieveJournalBatchByColumn(Login login, SimpleMap[] data, String column, String value);
+	   
+	    
 	
 	/* ===================================================== */
 	/* ============= Consulta de Comprobantes ============== */

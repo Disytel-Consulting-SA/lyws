@@ -2,7 +2,10 @@ package org.libertya.ws.client;
 
 
 import java.io.FileOutputStream;
+import java.math.BigDecimal;
 import java.rmi.Remote;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.commons.codec.binary.Base64;
 import org.libertya.ws.bean.parameter.AllocationParameterBean;
@@ -14,9 +17,13 @@ import org.libertya.ws.bean.parameter.InvoiceParameterBean;
 import org.libertya.ws.bean.parameter.OrderParameterBean;
 import org.libertya.ws.bean.parameter.ParameterBean;
 import org.libertya.ws.bean.result.CustomServiceResultBean;
+import org.libertya.ws.bean.result.DocumentResultBean;
 import org.libertya.ws.bean.result.MultipleDocumentsResultBean;
 import org.libertya.ws.bean.result.MultipleRecordsResultBean;
 import org.libertya.ws.bean.result.ResultBean;
+import org.openXpertya.model.MJournal;
+import org.openXpertya.model.MJournalLine;
+import org.openXpertya.util.Env;
 
 import ws.libertya.org.LibertyaWSServiceLocator;
 import ws.libertya.org.LibertyaWSSoapBindingStub;
@@ -40,9 +47,106 @@ public class LibertyaWSClient {
 			// Recuperar el servicio
 //			ws.libertya.org.LibertyaWS lyws = locator.getLibertyaWS();
 			org.libertya.ws.LibertyaWS lyws = new org.libertya.ws.LibertyaWSImpl();
-
 			//creacion del ParameterBean
 //			ParameterBean test_data = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+			
+			
+			
+			//=========================================
+			//============= Testing Diarios ===========
+			//=========================================
+			
+			//========= Alta de Diarios =====
+				//1. ResultBean journalCreate(OrderParameterBean data, boolean completeJournal)
+			//========= Baja de Diarios en borrador =====
+				//2. ResultBean journalDeleteByID(ParameterBean data, int orderID)
+				//3. ResultBean journalDeleteByColumn**(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria)
+			//========= Completado de Diarios =====
+				//4. ResultBean journalCompleteByID(ParameterBean data, int journalBatchID)
+				//5. ResultBean journalCompleteByColumn(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria)
+			//========= Anulación de Diarios =====
+				//6. ResultBean journalVoidByID(ParameterBean data,int journalBatchID)
+				//7. ResultBean journalVoidByColumn(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria)
+			//#======== Consulta de Diarios =====
+				//8. DocumentResultBean documentRetrieveJournalByID(ParameterBean data, int journalBatchID)
+				//9. DocumentResultBean documentRetrieveJournalByColumn(ParameterBean data, java.lang.String column, java.lang.String value)
+			
+			
+			//1. ResultBean journalCreate(OrderParameterBean data, boolean completeJournal)	OK		
+//			DocumentParameterBean test_data = new DocumentParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			test_data.addColumnToMainTable("description", "test_lyws_completar2");
+//			test_data.addColumnToMainTable("C_DocType_ID", "1010503"); //diario del mayor
+//			test_data.addColumnToMainTable("C_Acctschema_id", "1010016");
+//			test_data.addColumnToMainTable("GL_Category_ID", "1010098");
+//			test_data.addColumnToMainTable("C_Conversiontype_id", "114");
+//				//lines
+//				test_data.newDocumentLine();
+//				test_data.addColumnToCurrentLine("amtacctdr", "1000"); //debe
+//				test_data.addColumnToCurrentLine("amtacctrc", "0"); //haber
+//				test_data.addColumnToCurrentLine("amtsourcedr", "1000");
+//				test_data.addColumnToCurrentLine("amtsourcerc", "0");
+//				test_data.addColumnToCurrentLine("C_ValidCombination_ID", "1034424");
+//				test_data.addColumnToCurrentLine("C_Currency_ID", "118");
+//				test_data.addColumnToCurrentLine("c_conversiontype_id", "114");
+//				test_data.addColumnToCurrentLine("c_elementvalue_id", "1012825"); //cuenta
+//			ResultBean restest = lyws.journalCreate(test_data, true);
+//			System.out.println(restest);
+			
+			//2. ResultBean journalDeleteByID(ParameterBean data, int orderID) OK
+//			ParameterBean test_data2 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			ResultBean restest2 = lyws.journalDeleteByID(test_data2, 1010483);
+//			System.out.println(restest2);
+			
+			//3. ResultBean journalDeleteByColumn**(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria) OK
+//			ParameterBean test_data3 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			ResultBean restest3 = lyws.journalDeleteByColumn(test_data3, "description", "test_lyws_completar");
+//			System.out.println(restest3);
+			
+			
+			
+			
+			//4. ResultBean journalCompleteByID(ParameterBean data, int journalBatchID) OK
+//			ParameterBean test_data4 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			ResultBean restest4 = lyws.journalCompleteByID(test_data4, 1010485);
+//			System.out.println(restest4);
+			
+			//5. ResultBean journalCompleteByColumn(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria) OK
+//			ParameterBean test_data5 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			ResultBean restest5 = lyws.journalCompleteByColumn(test_data5, "description", "test_lyws_completar");
+//			System.out.println(restest5);
+
+			
+			//6. ResultBean journalVoidByID(ParameterBean data,int journalBatchID) OK
+//			ParameterBean test_data6 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			ResultBean restest6 = lyws.journalVoidByID(test_data6, 1010487);
+//			System.out.println(restest6);
+			
+			
+			//7. ResultBean journalVoidByColumn(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria)
+//			ParameterBean test_data7 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			ResultBean restest7 = lyws.journalVoidByColumn(test_data7, "description", "test_lyws_completar2");
+//			System.out.println(restest7);	
+
+			////8. DocumentResultBean documentRetrieveJournalByID(ParameterBean data, int journalBatchID) OK
+//			ParameterBean test_data = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			DocumentResultBean restest = lyws.documentRetrieveJournalByID(test_data, 1010449);
+//			System.out.println(restest);
+			
+			//9. DocumentResultBean documentRetrieveJournalByColumn(ParameterBean data, java.lang.String column, java.lang.String value) OK
+//			ParameterBean test_data = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			DocumentResultBean restest = lyws.documentRetrieveJournalByColumn(test_data, "description", "test");
+//			System.out.println(restest);
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
 			
 			
 			/* #######################################################
@@ -64,10 +168,10 @@ public class LibertyaWSClient {
 //			System.out.println(restest);
 			
 			//Update
-			ParameterBean test_data3 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 0);
-			test_data3.addColumnToMainTable("description", "description update by id exitoso");
-			ResultBean restest = lyws.productLinesUpdateByID(test_data3, Integer.valueOf("1010201"));
-			System.out.println(restest);
+//			ParameterBean test_data3 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 0);
+//			test_data3.addColumnToMainTable("description", "description update by id exitoso");
+//			ResultBean restest = lyws.productLinesUpdateByID(test_data3, Integer.valueOf("1010201"));
+//			System.out.println(restest);
 			
 			//Delete
 //			ParameterBean test_data4 = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 0);

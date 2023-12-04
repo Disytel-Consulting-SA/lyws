@@ -30,6 +30,8 @@ import org.libertya.ws.handler.GeneralRecordQueryHandler;
 import org.libertya.ws.handler.InOutDocumentHandler;
 import org.libertya.ws.handler.InventoryDocumentHandler;
 import org.libertya.ws.handler.InvoiceDocumentHandler;
+import org.libertya.ws.handler.JournalBatchCRUDHandler;
+import org.libertya.ws.handler.JournalDocumentHandler;
 import org.libertya.ws.handler.OrderDocumentHandler;
 import org.libertya.ws.handler.ProcessExecuteHandler;
 import org.libertya.ws.handler.ProductCRUDHandler;
@@ -218,6 +220,115 @@ public class LibertyaWSImpl implements LibertyaWS {
 	public synchronized ResultBean productCategoryDelete(ParameterBean data, int productCategoryID) {
 		return new ProductCategoryCRUDHandler().productTierDelete(data, productCategoryID);
 	}
+	
+	/* ===================================================== */
+	/* ====================== Diarios === ================== */
+	/* ===================================================== */
+	
+	@Override
+	public ResultBean journalCreate(DocumentParameterBean data, boolean completeJournal) {
+		return new JournalDocumentHandler().journalCreate(data, completeJournal);
+	}
+
+	@Override
+	public ResultBean journalDeleteByID(ParameterBean data, int journalID) {
+		return new JournalDocumentHandler().journalDeleteByID(data, journalID);
+	}
+
+	@Override
+	public ResultBean journalDeleteByColumn(ParameterBean data, String columnName, String columnCriteria) {
+		return new JournalDocumentHandler().journalDeleteByColumn(data, columnName, columnCriteria);
+	}
+
+	@Override
+	public ResultBean journalCompleteByID(ParameterBean data, int journalID) {
+		return new JournalDocumentHandler().journalCompleteByID(data, journalID);
+	}
+
+	@Override
+	public ResultBean journalCompleteByColumn(ParameterBean data, String columnName, String columnCriteria) {
+		return new JournalDocumentHandler().journalCompleteByColumn(data, columnName, columnCriteria);
+	}
+
+	@Override
+	public ResultBean journalVoidByID(ParameterBean data, int journalID) {
+		return new JournalDocumentHandler().journalVoidByID(data, journalID);
+	}
+
+	@Override
+	public ResultBean journalVoidByColumn(ParameterBean data, String columnName, String columnCriteria) {
+		return new JournalDocumentHandler().journalVoidByColumn(data, columnName, columnCriteria);
+	}
+
+	@Override
+	public DocumentResultBean documentRetrieveJournalByID(ParameterBean data, int journalID) {
+		return new JournalDocumentHandler().documentRetrieveJournalByID(data, journalID);
+	}
+
+	@Override
+	public DocumentResultBean documentRetrieveJournalByColumn(ParameterBean data, String column, String value) {
+		return new JournalDocumentHandler().documentRetrieveJournalByColumn(data, column, value);
+	}
+	
+	
+	/* ===================================================== */
+	/* ================= Lote de Asientos  ================= */
+	/* ===================================================== */
+	
+	//Alta de Lote de Asientos
+	
+//	@Override
+//	public synchronized ResultBean journalBatchCreate(OrderParameterBean data, boolean completeJournalBatch) {
+//		return new JournalBatchCRUDHandler().journalBatchCreate(data, completeJournalBatch);
+//	}
+//
+//	//Baja de Lote de Asientos en Borrador
+//	
+//	@Override
+//	public synchronized ResultBean journalBatchDeleteByID(ParameterBean data, int orderID) {
+//		return new JournalBatchCRUDHandler().journalBatchDeleteByID(data, orderID);
+//	}
+//
+//	@Override
+//	public synchronized ResultBean journalBatchDeleteByColumn(ParameterBean data, String columnName, String columnCriteria) {
+//		return new JournalBatchCRUDHandler().journalBatchDeleteByColumn(data, columnName, columnCriteria);
+//	}
+//
+//	//Completado de Lote de Asientos
+//	
+//	@Override
+//	public synchronized ResultBean journalBatchCompleteByID(ParameterBean data, int journalBatchID) {
+//		return new JournalBatchCRUDHandler().journalBatchCompleteByID(data, journalBatchID);
+//	}
+//
+//	@Override
+//	public synchronized ResultBean journalBatchCompleteByColumn(ParameterBean data, String columnName, String columnCriteria) {
+//		return new JournalBatchCRUDHandler().journalBatchCompleteByColumn(data, columnName, columnCriteria);
+//	}
+//
+//	//Anulación de Lote de Asientos
+//	
+//	@Override
+//	public synchronized ResultBean journalBatchVoidByID(ParameterBean data, int journalBatchID) {
+//		return new JournalBatchCRUDHandler().journalBatchVoidByID(data, journalBatchID);
+//	}
+//
+//	@Override
+//	public synchronized ResultBean journalBatchVoidByColumn(ParameterBean data, String columnName, String columnCriteria) {
+//		return new JournalBatchCRUDHandler().journalBatchVoidByColumn(data, columnName, columnCriteria);
+//	}
+//
+//	//Consulta de Lotes de Asientos
+//	
+//	@Override
+//	public synchronized DocumentResultBean documentRetrieveJournalBatchByID(ParameterBean data, int journalBatchID) {
+//		return new JournalBatchCRUDHandler().documentRetrieveJournalBatchByID(data, journalBatchID);
+//	}
+//
+//	@Override
+//	public synchronized DocumentResultBean documentRetrieveJournalBatchByColumn(ParameterBean data, String column, String value) {
+//		return new JournalBatchCRUDHandler().documentRetrieveJournalBatchByColumn(data, column, value);
+//	}
 	
 	
 	/* ===================================================== */
@@ -635,6 +746,8 @@ public class LibertyaWSImpl implements LibertyaWS {
 	public synchronized CustomServiceResultBean customService(CustomServiceParameterBean data) {
 		return new CustomServiceHandler().customService(data);
 	}
+
+	
 
 
 }
