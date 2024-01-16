@@ -1,27 +1,153 @@
 package org.libertya.ws.handler;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.libertya.ws.bean.parameter.DocumentParameterBean;
 import org.libertya.ws.bean.parameter.ParameterBean;
 import org.libertya.ws.bean.result.DocumentResultBean;
 import org.libertya.ws.bean.result.ResultBean;
 import org.libertya.ws.exception.ModelException;
+import org.openXpertya.model.MAccount;
+import org.openXpertya.model.MAcctSchema;
 import org.openXpertya.model.MInvoice;
 import org.openXpertya.model.MJournal;
 import org.openXpertya.model.MJournalLine;
 import org.openXpertya.model.PO;
+import org.openXpertya.model.X_C_ValidCombination;
 import org.openXpertya.process.DocAction;
 import org.openXpertya.process.DocumentEngine;
 import org.openXpertya.util.CLogger;
+import org.openXpertya.util.DB;
 import org.openXpertya.util.Env;
 import org.openXpertya.util.Msg;
+import org.openXpertya.util.Trx;
 
 public class JournalDocumentHandler extends GeneralHandler {
 
 	public JournalDocumentHandler() { }
+	
+	
+	/**
+	 * Busca un C_ValidCombination_ID a partir de los parametros de una linea de diario 
+	 * En caso de no encontrar ninguna crea una valid combination nueva y devuelve su ID
+	 * los parametros posibles son:
+	 * - VC_Ad_Org_ID
+	 * - VC_ElementValue
+	 * - VC_ProductValue
+	 * - VC_BPartnerValue
+	 * - VC_ProjectValue
+	 * - VC_CampaingValue
+	 * @param line parametros correspondientes de la linea
+	 * @return C_ValidCombination_id resultante o ERROR
+	 */
+	private int getValidCombinationIDFromLine(HashMap<String, String> line) {
+		
+        //se busca una valid combination existente, en caso de recibir cero no hay coincidencias
+        int vc_id = getExistentVC(line);
+        
+        //si se recibio cero, se crea una valid combination nueva
+        if(vc_id == 0) {
+        	
+        	//creamos nueva transaccion para evitar problemas de visibilidad a la hora de
+        	//persistir la gl_journalline
+        	String vc_trxName = Trx.createTrx(Trx.createTrxName()).getTrxName();
+            MAccount vc = new MAccount(Env.getCtx(), 0, vc_trxName);
+            
+            //VC_Ad_Org_ID -> ad_org_id
+            if(line.get("vc_ad_org_id") != null)
+            	vc.setAD_Org_ID(Integer.valueOf(line.get("vc_ad_org_id")));
+            //VC_ElementValue -> account_id
+            if(line.get("vc_elementvalue") != null)
+            	vc.setAccount_ID(Integer.valueOf(line.get("vc_elementvalue")));
+            //VC_ProductValue -> m_product_id
+            if(line.get("vc_productvalue") != null)
+            	vc.setM_Product_ID(Integer.valueOf(line.get("vc_productvalue")));
+            //VC_BPartnerValue -> c_bpartner_id
+            if(line.get("vc_bpartnervalue") != null)
+            	vc.setC_BPartner_ID(Integer.valueOf(line.get("vc_bpartnervalue")));
+            //VC_ProjectValue -> c_project_id
+            if(line.get("vc_projectvalue") != null)
+            	vc.setC_Project_ID(Integer.valueOf(line.get("vc_projectvalue")));
+            //VC_CampaingValue -> c_campaign_id
+            if(line.get("vc_campaignvalue") != null)
+            	vc.setC_Campaign_ID(Integer.valueOf(line.get("vc_campaignvalue")));
+            
+            //setear account schema
+            MAcctSchema[] as = MAcctSchema.getClientAcctSchema(getCtx(), Env.getAD_Client_ID(getCtx()));
+			if(as != null && !(as.length <= 0)){				
+				int acctSchemaID = as[0].getC_AcctSchema_ID();
+				vc.setC_AcctSchema_ID(acctSchemaID);
+			}
+						
+            //guardar
+            vc.save();
+            //commit transaction
+            Trx.getTrx(vc_trxName).commit();
+            //obtener id
+            vc_id = vc.getC_ValidCombination_ID();
+        }
+		return vc_id;
+	}
+	
+	
+	/**
+	 * Busca una valid combination existente para los parámetros especificados
+	 * en caso de no encontrar ningun resultado devuevle 0
+	 * @param line parametros correspondientes de la linea
+	 * @return c_validcombination_id para el resultado obtenido o cero en caso contrario
+	 */
+	private int getExistentVC(HashMap<String, String> line) {
+		int cValidCombinationId = 0;
+		
+		try {
+			StringBuffer query = new StringBuffer("");
+			query.append(" SELECT 	c_validcombination_id") 
+				 .append(" FROM		c_validcombination")
+				 .append(" WHERE ")
+				 .append(" ad_org_id = " + line.get("vc_ad_org_id") 		+ " AND")
+				 .append(" account_id = " + line.get("vc_elementvalue") 	+ " AND");
+				if(line.get("vc_productvalue") != null) {
+					query.append(" m_product_id = " + line.get("vc_productvalue") 	+ " AND");
+				}else {					
+					query.append(" m_product_id is null AND");
+				}
+				if(line.get("vc_bpartnervalue") != null) {
+					query.append(" c_bpartner_id = " + line.get("vc_bpartnervalue") + " AND");
+				}else {					
+					query.append(" c_bpartner_id is null AND");
+				}
+				if(line.get("vc_projectvalue") != null) {
+					query.append(" c_project_id = " + line.get("vc_projectvalue") + " AND");
+				}else {					
+					query.append(" c_project_id is null AND");
+				}
+				if(line.get("vc_campaignvalue") != null) {
+					query.append(" c_campaign_id = " + line.get("vc_campaignvalue") + ";");
+				}else {					
+					query.append(" c_campaign_id is null;");
+				}
+	
+				PreparedStatement pstmt = DB.prepareStatement(query.toString(), getTrxName());
+				ResultSet rs = pstmt.executeQuery();
+				
+				//si existe algun resultado se devuelve su id, en caso contrario devuelve 0
+				if (rs.next()) {
+			        cValidCombinationId = rs.getInt("c_validcombination_id");
+			    }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return cValidCombinationId;
+	}
+	
 	
 	//Alta de Diario
 	
@@ -45,7 +171,7 @@ public class JournalDocumentHandler extends GeneralHandler {
 			//Timestamp dateDoc = Timestamp.valueOf(toLowerCaseKeys(data.getMainTable()).get("datedoc"));
 			
 			//Creacion de journal
-			MJournal aJournal = new MJournal(Env.getCtx(), 0, null);
+			MJournal aJournal = new MJournal(Env.getCtx(), 0, getTrxName());
 			setValues(aJournal, data.getMainTable(), true);
 			if (!aJournal.save())
 				throw new ModelException("Error al persistir diario:" + CLogger.retrieveErrorAsString());
@@ -71,7 +197,14 @@ public class JournalDocumentHandler extends GeneralHandler {
 				//setear org_id y fecha
 				aJournalLine.setAD_Org_ID(orgID);
 				aJournalLine.setDateAcct(dateDoc);
+				//setear element value
+				aJournalLine.setC_ElementValue_ID(Integer.valueOf(line.get("vc_elementvalue")));
 				
+				//verificar valid combinations
+				if(line.get("c_validcombination_id") == null || line.get("c_validcombination_id").equalsIgnoreCase("")) {
+					line.put("vc_ad_org_id", String.valueOf(orgID));
+					aJournalLine.setC_ValidCombination_ID(getValidCombinationIDFromLine(line));
+				}
 				
 				if (!aJournalLine.save())
 					throw new ModelException("Error al persistir linea:" + CLogger.retrieveErrorAsString());	

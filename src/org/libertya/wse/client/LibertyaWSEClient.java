@@ -7,7 +7,7 @@ import org.libertya.wse.common.SimpleMap;
 import org.libertya.wse.param.Login;
 import org.libertya.wse.result.SimpleResult;
 
-import wse.libertya.org.LibertyaWSEServiceLocator;
+//import wse.libertya.org.LibertyaWSEServiceLocator;
 
 //import wse.libertya.org.LibertyaWSEServiceLocator;
 

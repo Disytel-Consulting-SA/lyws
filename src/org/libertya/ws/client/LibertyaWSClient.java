@@ -32,6 +32,7 @@ public class LibertyaWSClient {
 
 	/**
 	 * For test-purposes only!
+	 * 
 	 */
 	public static void main(String[] args)
 	{
@@ -44,11 +45,18 @@ public class LibertyaWSClient {
 				System.err.println("No se ha especificado URL del servicio.  Utilizando valor por defecto: http://localhost:8080/axis/services/LibertyaWS");
 			else
 				locator.setLibertyaWSEndpointAddress(args[0]);
-			// Recuperar el servicio
+//			locator.setLibertyaWSEndpointAddress("http://<IP_ADDR>:8080/axis/services/LibertyaWS");
+//			Recuperar el servicio
 //			ws.libertya.org.LibertyaWS lyws = locator.getLibertyaWS();
+			
+			//instancia de forma local para no tener que iniciar jboss
 			org.libertya.ws.LibertyaWS lyws = new org.libertya.ws.LibertyaWSImpl();
+			
 			//creacion del ParameterBean
 //			ParameterBean test_data = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+			
+			
+			
 			
 			
 			
@@ -74,22 +82,31 @@ public class LibertyaWSClient {
 			
 			//1. ResultBean journalCreate(OrderParameterBean data, boolean completeJournal)	OK		
 //			DocumentParameterBean test_data = new DocumentParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
-//			test_data.addColumnToMainTable("description", "test_lyws_completar2");
+//			
+//			test_data.addColumnToMainTable("description", "test_lyws 20240112-1");
 //			test_data.addColumnToMainTable("C_DocType_ID", "1010503"); //diario del mayor
 //			test_data.addColumnToMainTable("C_Acctschema_id", "1010016");
 //			test_data.addColumnToMainTable("GL_Category_ID", "1010098");
 //			test_data.addColumnToMainTable("C_Conversiontype_id", "114");
+//			
 //				//lines
 //				test_data.newDocumentLine();
 //				test_data.addColumnToCurrentLine("amtacctdr", "1000"); //debe
 //				test_data.addColumnToCurrentLine("amtacctrc", "0"); //haber
 //				test_data.addColumnToCurrentLine("amtsourcedr", "1000");
 //				test_data.addColumnToCurrentLine("amtsourcerc", "0");
-//				test_data.addColumnToCurrentLine("C_ValidCombination_ID", "1034424");
-//				test_data.addColumnToCurrentLine("C_Currency_ID", "118");
+//				test_data.addColumnToCurrentLine("c_currency_id", "118");
 //				test_data.addColumnToCurrentLine("c_conversiontype_id", "114");
-//				test_data.addColumnToCurrentLine("c_elementvalue_id", "1012825"); //cuenta
-//			ResultBean restest = lyws.journalCreate(test_data, true);
+//
+//				//valores para valid combination
+//				//test_data.addColumnToCurrentLine("c_elementvalue_id", "1012825"); //cuenta
+//				//test_data.addColumnToCurrentLine("C_ValidCombination_ID", "1034424"); //valid combination
+//				test_data.addColumnToCurrentLine("vc_elementvalue", "1012836");
+//				test_data.addColumnToCurrentLine("vc_productvalue", "1066323");
+//				//test_data.addColumnToCurrentLine("vc_bpartnervalue", "1019825");
+//				//test_data.addColumnToCurrentLine("vc_projectvalue", "1000005");
+//				
+//			ResultBean restest = lyws.journalCreate(test_data, false);
 //			System.out.println(restest);
 			
 			//2. ResultBean journalDeleteByID(ParameterBean data, int orderID) OK
