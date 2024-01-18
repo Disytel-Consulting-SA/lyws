@@ -29,7 +29,6 @@ import org.openXpertya.replication.ReplicationConstants;
 import org.openXpertya.util.CLogger;
 import org.openXpertya.util.DB;
 import org.openXpertya.util.Msg;
-import org.openXpertya.util.Trx;
 
 public class OrderDocumentHandler extends DocumentHandler {
 	
@@ -430,18 +429,19 @@ public class OrderDocumentHandler extends DocumentHandler {
 	 * Sobrecarga por compatibilidad
 	 */
 	protected MInOut createInOutFromOrder(MOrder anOrder, boolean completeInOut, Timestamp movementDate, Timestamp dateAcct) throws ModelException, Exception {
-		return createInOutFromOrder(anOrder, completeInOut, null, movementDate, dateAcct);
+		return createInOutFromOrder(anOrder, completeInOut, null, null, movementDate, dateAcct);
 	}
 	
 	/**
 	 * Gestiona la creación de un remito a partir del pedido, apoyandose en la clase CreateFromShipment.
 	 * @param anOrder pedido sobre el cual tomar la informacion
 	 * @param completeInOut si se desea completar el remito
+	 * @param inOutHeader datos de cabecera del remito que se setean con prioridad respecto al order
 	 * @param inOutLines para remisiones parciales (se debe indicar para cada línea el C_OrderLine_ID y QtyEntered), si no se especifica se supone que el pedido se remite completamente
 	 * @param movementDate redefinición del valor (o se copia el dateOrdered  del pedido en caso de recibir null)
 	 * @param dateAcct redefinición del valor (o se copia el dateAcct del pedido en caso de recibir null)
 	 */
-	protected MInOut createInOutFromOrder(MOrder anOrder, boolean completeInOut, ArrayList<HashMap<String, String>> inOutLines, Timestamp movementDate, Timestamp dateAcct) throws ModelException, Exception 
+	protected MInOut createInOutFromOrder(MOrder anOrder, boolean completeInOut, HashMap<String, String> inOutHeader, ArrayList<HashMap<String, String>> inOutLines, Timestamp movementDate, Timestamp dateAcct) throws ModelException, Exception 
 	{
 		// Instanciar el nuevo remito
 		MInOut anInOut = new MInOut(anOrder, 0, anOrder.getDateOrdered());
@@ -451,7 +451,10 @@ public class OrderDocumentHandler extends DocumentHandler {
 		copyPOValues(anOrder, anInOut);
 		// Setear el tipo de documento
 		anInOut.setC_DocType_ID();
-
+		
+		//Setear valores de cabecera en el remito
+		setValues(anInOut, inOutHeader, true);
+		
 		// Setear movementDate y dateAcct en caso de estar seteadas, sino tomar la del pedido
 		anInOut.setMovementDate(movementDate != null ? movementDate : anOrder.getDateOrdered());
 		anInOut.setDateAcct(dateAcct != null ? dateAcct : anOrder.getDateAcct());

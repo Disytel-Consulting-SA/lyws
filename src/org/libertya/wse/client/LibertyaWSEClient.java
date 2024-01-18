@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 
 import org.apache.commons.codec.binary.Base64;
 import org.libertya.wse.common.SimpleMap;
+import org.libertya.wse.param.DocumentLine;
 import org.libertya.wse.param.Login;
 import org.libertya.wse.result.SimpleResult;
 
@@ -30,9 +31,51 @@ public class LibertyaWSEClient {
 //			// Definicion de login 
 			Login aLogin = new Login();
 			aLogin.setUserName("AdminLibertya"); 
-			aLogin.setPassword("AdminLibertya"); 
+			aLogin.setPassword("Tjhs20l"); 
 			aLogin.setClientID(1010016); 
-			aLogin.setOrgID(0);
+			aLogin.setOrgID(1010053); //0
+			
+			
+			
+			/* #######################################################
+			 * ################ InOutCreateFromOrder #################
+			 * #######################################################
+			 */
+			
+//			SimpleMap lineVal1 = new SimpleMap();
+//				lineVal1.setKey("M_Product_ID");
+//				lineVal1.setValue("1044807");
+//			SimpleMap lineVal2 = new SimpleMap();
+//				lineVal2.setKey("QtyEntered");
+//				lineVal2.setValue("1");
+//			SimpleMap lineVal3 = new SimpleMap();
+//				lineVal3.setKey("c_orderline_id");
+//				lineVal3.setValue("1018473");
+//			
+//			SimpleMap[] lineContent = new SimpleMap[3];
+//				lineContent[0] = lineVal1;
+//				lineContent[1] = lineVal2;
+//				lineContent[2] = lineVal3;
+//				
+//			DocumentLine aLine = new DocumentLine();
+//				aLine.setContent(lineContent);
+//			
+//			DocumentLine[] lines = new DocumentLine[1];
+//				lines[0] = aLine;
+//			
+//			//Create
+//			SimpleMap[] data = new SimpleMap[1];
+//				SimpleMap description = new SimpleMap();
+//					description.setKey("description");
+//					description.setValue("test_lyws");
+//					data[0] = description;
+//				
+//				SimpleResult result = lywse.inOutCreateFromOrder(aLogin, data, lines, 1014468, false);
+//					
+//			if (!result.isError()) {
+//				System.out.println(result.getResultValues()[0].getValue());
+//			} else 
+//				System.out.println(result.getErrorMsg());			
 			
 			
 			/* #######################################################
