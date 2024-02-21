@@ -56,6 +56,65 @@ public class LibertyaWSClient {
 //			ParameterBean test_data = new ParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
 			
 			
+			//===========================================================
+			//============= Testing Movimientos de inventario ===========
+			//===========================================================
+			
+			//========= Alta de movimiento =====
+				//1. ResultBean movementCreate(DocumentParameterBean data, boolean complete);
+			//========= Completado de movimiento =====
+				//2. ResultBean movementCompleteByID(ParameterBean data, int movementID);
+				//3. ResultBean movementCompleteByColumn(ParameterBean data, String columnName, String columnCriteria);
+			//========= Anulacion de movimiento en borrador =====
+				//4. ResultBean movementVoidById(ParameterBean data, int movementID);
+				//5. ResultBean movementVoidByColumn(ParameterBean data, String columnName, String columnCriteria);
+		
+			
+			//1. ResultBean movementCreate(DocumentParameterBean data, boolean complete); OK	
+//			DocumentParameterBean test_data = new DocumentParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//			
+//			test_data.addColumnToMainTable("description", "mov_void_by_column");
+//			test_data.addColumnToMainTable("C_DocType_ID", "1010528"); //Movimiento de material
+//			
+//				//lines
+//				test_data.newDocumentLine();
+//				test_data.addColumnToCurrentLine("movementqty", "1");
+//				test_data.addColumnToCurrentLine("m_locator_id", "1010278");
+//				test_data.addColumnToCurrentLine("m_locatorto_id", "1010575");
+//				test_data.addColumnToCurrentLine("m_product_id", "1015721");
+//				
+//			ResultBean restest = lyws.movementCreate(test_data, false);
+//			System.out.println(restest);
+
+			
+			//2. ResultBean movementCompleteByID(ParameterBean data, int movementID);
+//			DocumentParameterBean test_data = new DocumentParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//				
+//			ResultBean restest = lyws.movementCompleteByColumn(test_data, "description", "mov_complete_by_column");
+//			System.out.println(restest);
+			
+			
+			//3. ResultBean movementCompleteByColumn(ParameterBean data, String columnName, String columnCriteria); OK
+//			DocumentParameterBean test_data = new DocumentParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//				
+//			ResultBean restest = lyws.movementCompleteByID(test_data, 1011316);
+//			System.out.println(restest);
+			
+			
+			//4.ResultBean movementVoidById(ParameterBean data, int movementID);
+			DocumentParameterBean test_data = new DocumentParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+				
+			ResultBean restest = lyws.movementVoidById(test_data, 1011317);
+			System.out.println(restest);
+			
+			
+			//5.ResultBean movementVoidByColumn(ParameterBean data, String columnName, String columnCriteria);
+//			DocumentParameterBean test_data = new DocumentParameterBean("AdminLibertya", "AdminLibertya", 1010016, 1010053);
+//				
+//			ResultBean restest = lyws.movementVoidByColumn(test_data, "description", "mov_void_by_column");
+//			System.out.println(restest);
+		    
+			 
 			
 			
 			

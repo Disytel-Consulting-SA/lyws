@@ -32,6 +32,7 @@ import org.libertya.ws.handler.InventoryDocumentHandler;
 import org.libertya.ws.handler.InvoiceDocumentHandler;
 import org.libertya.ws.handler.JournalBatchCRUDHandler;
 import org.libertya.ws.handler.JournalDocumentHandler;
+import org.libertya.ws.handler.MovementDocumentHandler;
 import org.libertya.ws.handler.OrderDocumentHandler;
 import org.libertya.ws.handler.ProcessExecuteHandler;
 import org.libertya.ws.handler.ProductCRUDHandler;
@@ -329,6 +330,36 @@ public class LibertyaWSImpl implements LibertyaWS {
 //	public synchronized DocumentResultBean documentRetrieveJournalBatchByColumn(ParameterBean data, String column, String value) {
 //		return new JournalBatchCRUDHandler().documentRetrieveJournalBatchByColumn(data, column, value);
 //	}
+	
+	/* ===================================================== */
+	/* ============= Movimientos de inventario ============= */
+	/* ===================================================== */
+	
+	@Override
+	public ResultBean movementCreate(DocumentParameterBean data, boolean complete) {
+		return new MovementDocumentHandler().movementCreate(data, complete);
+	}
+
+	@Override
+	public ResultBean movementCompleteByID(ParameterBean data, int movementID) {
+		return new MovementDocumentHandler().movementCompleteByID(data, movementID);
+	}
+
+	
+	@Override
+	public ResultBean movementCompleteByColumn(ParameterBean data, String columnName, String columnCriteria) {
+		return new MovementDocumentHandler().movementCompleteByColumn(data, columnName, columnCriteria);
+	}
+
+	@Override
+	public ResultBean movementVoidById(ParameterBean data, int movementID) {
+		return new MovementDocumentHandler().movementVoidByID(data, movementID);
+	}
+
+	@Override
+	public ResultBean movementVoidByColumn(ParameterBean data, String columnName, String columnCriteria) {
+		return new MovementDocumentHandler().movementVoidByColumn(data, columnName, columnCriteria);
+	}
 	
 	
 	/* ===================================================== */
@@ -746,7 +777,6 @@ public class LibertyaWSImpl implements LibertyaWS {
 	public synchronized CustomServiceResultBean customService(CustomServiceParameterBean data) {
 		return new CustomServiceHandler().customService(data);
 	}
-
 	
 
 

@@ -29,6 +29,7 @@ import org.libertya.ws.handler.InventoryDocumentHandler;
 import org.libertya.ws.handler.InvoiceDocumentHandler;
 import org.libertya.ws.handler.JournalBatchCRUDHandler;
 import org.libertya.ws.handler.JournalDocumentHandler;
+import org.libertya.ws.handler.MovementDocumentHandler;
 import org.libertya.ws.handler.OrderDocumentHandler;
 import org.libertya.ws.handler.ProcessExecuteHandler;
 import org.libertya.ws.handler.ProductCRUDHandler;
@@ -440,6 +441,48 @@ public class LibertyaWSEImpl implements LibertyaWSE {
 //		ResultBean resultBean = new JournalBatchCRUDHandler().documentRetrieveJournalBatchByColumn(bean, column, value);
 //		return new SimpleResult(resultBean);
 //	}
+	
+	/* ===================================================== */
+	/* ============= Movimientos de inventario ============= */
+	/* ===================================================== */
+	
+	
+	@Override
+	public SimpleResult movementCreate(Login login, SimpleMap[] data, boolean complete) {
+		DocumentParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new MovementDocumentHandler().movementCreate(bean, complete);
+		return new SimpleResult(resultBean);
+	}
+
+	@Override
+	public SimpleResult movementCompleteByID(Login login, SimpleMap[] data, int movementID) {
+		DocumentParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new MovementDocumentHandler().movementCompleteByID(bean, movementID);
+		return new SimpleResult(resultBean);
+	}
+
+	@Override
+	public SimpleResult movementCompleteByColumn(Login login, SimpleMap[] data, String columnName,
+			String columnCriteria) {
+		DocumentParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new MovementDocumentHandler().movementCompleteByColumn(bean, columnName, columnCriteria);
+		return new SimpleResult(resultBean);
+	}
+
+	@Override
+	public SimpleResult movementVoidById(Login login, SimpleMap[] data, int movementID) {
+		DocumentParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new MovementDocumentHandler().movementVoidByID(bean, movementID);
+		return new SimpleResult(resultBean);
+	}
+
+	@Override
+	public SimpleResult movementVoidByColumn(Login login, SimpleMap[] data, String columnName, String columnCriteria) {
+		DocumentParameterBean bean = new DocumentParameterBean(login.getUserName(), login.getPassword(), login.getClientID(), login.getOrgID());
+		ResultBean resultBean = new MovementDocumentHandler().movementVoidByColumn(bean, columnName, columnCriteria);
+		return new SimpleResult(resultBean);
+	}
+	
 	
 	/* ===================================================== */
 	/* ============= Consulta de Comprobantes ============== */

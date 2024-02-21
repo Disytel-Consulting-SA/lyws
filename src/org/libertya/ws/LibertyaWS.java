@@ -541,6 +541,52 @@ public interface LibertyaWS {
 	
 	
 	/* ===================================================== */
+	/* ============= Movimientos de inventario ============= */
+	/* ===================================================== */
+	
+	/**
+	 * Creacion de movimiento de inventario
+	 * @param data parametros correspondientes
+	 * @param complete true/false dependiendo si se desea completar el documento
+	 * @return ResultBean con datos
+	 */
+    public ResultBean movementCreate(DocumentParameterBean data, boolean complete);
+    
+    /**
+	 * Completar movimiento de inventario
+	 * @param data parametros correspondientes
+	 * @param movementID id del movimiento a completar
+	 * @return ResultBean con datos
+	 */
+    public ResultBean movementCompleteByID(ParameterBean data, int movementID);
+    
+    /**
+     * Completar movimiento de inventario por criterio de columna
+     * @param data parametros correspondientes
+     * @param columnName nombre de columna
+     * @param columnCriteria valor de columna
+     * @return ResultBean con datos
+     */
+    public ResultBean movementCompleteByColumn(ParameterBean data, String columnName, String columnCriteria);
+    
+    /**
+	 * Anulacion de movimiento de inventario por id
+	 * @param data parametros correspondientes
+	 * @param movementID id del movimiento a anular
+	 * @return ResultBean con datos
+	 */
+    public ResultBean movementVoidById(ParameterBean data, int movementID);    
+   
+    /**
+	 * Anulacion de movimiento de inventario por criterio de columna
+	 * @param data parametros correspondientes
+	 * @param columnName nombre de columna
+	 * @param columnCriteria valor de columna
+	 * @return ResultBean con datos
+	 */
+    public ResultBean movementVoidByColumn(ParameterBean data, String columnName, String columnCriteria);
+	
+	/* ===================================================== */
 	/* ============= Consulta de Comprobantes ============== */
 	/* ===================================================== */
 

@@ -1,5 +1,6 @@
 package org.libertya.wse;
 
+import org.libertya.ws.bean.parameter.DocumentParameterBean;
 import org.libertya.ws.bean.parameter.OrderParameterBean;
 import org.libertya.ws.bean.parameter.ParameterBean;
 import org.libertya.ws.bean.result.DocumentResultBean;
@@ -353,7 +354,48 @@ public interface LibertyaWSE {
 	 */
 	//public SimpleResult documentRetrieveJournalBatchByColumn(Login login, SimpleMap[] data, String column, String value);
 	   
-	    
+	
+	/* ===================================================== */
+	/* ============= Movimientos de inventario ============= */
+	/* ===================================================== */
+	
+	/**
+	 * Wrapper para <code>movementCreate(DocumentParameterBean data, boolean complete)</code>
+	 */
+    public SimpleResult movementCreate(Login login, SimpleMap[] data, boolean complete);
+    
+    /**
+	 * Wrapper para <code>movementCompleteByID(ParameterBean data, int movementID)</code>
+	 */
+    public SimpleResult movementCompleteByID(Login login, SimpleMap[] data, int movementID);
+    
+    /**
+	 * Wrapper para <code>movementCompleteByColumn(ParameterBean data, String columnName, String columnCriteria)</code>
+	 */
+    public SimpleResult movementCompleteByColumn(Login login, SimpleMap[] data, String columnName, String columnCriteria);
+    
+    /**
+	 * Wrapper para <code>movementVoidById(ParameterBean data, int movementID)</code>
+	 */
+    public SimpleResult movementVoidById(Login login, SimpleMap[] data, int movementID);    
+   
+    /**
+	 * Wrapper para <code>movementVoidByColumn(ParameterBean data, String columnName, String columnCriteria)</code>
+	 */
+    public SimpleResult movementVoidByColumn(Login login, SimpleMap[] data, String columnName, String columnCriteria);
+	
+	
+	
+	/**
+	 * Wrapper para <code>journalVoidByID(ParameterBean data,int journalID)</code>
+	 */
+	//public SimpleResult journalVoidByID(Login login, SimpleMap[] data,int journalID);
+	
+	/**
+	 * Wrapper para <code>journalVoidByColumn(ParameterBean data, java.lang.String columnName, java.lang.String columnCriteria)</code>
+	 */
+	//public SimpleResult journalVoidByColumn(Login login, SimpleMap[] data, String columnName, String columnCriteria);
+	
 	
 	/* ===================================================== */
 	/* ============= Consulta de Comprobantes ============== */
